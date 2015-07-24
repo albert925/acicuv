@@ -26,7 +26,7 @@
 	<script src="js/owl_carousel_min.js"></script>
 </head>
 <body>
-	<header>
+	<header id="automargen">
 		<article id="redes">
 			<a href="" target="_blank"><span class="icon-facebook"></span></a>
 			<a href="" target="_blank"><span class="icon-twitter"></span></a>
@@ -34,7 +34,7 @@
 			<a href="" target="_blank"><span class="icon-youtube3"></span></a>
 		</article>
 	</header>
-	<article id="cajmn">
+	<article id="cajmn" class="obautomarg">
 		<div id="mn_mv"><span class="icon-menu"></span></div>
 		<nav id="mnP">
 			<ul>
@@ -52,12 +52,133 @@
 			</ul>
 		</nav>
 	</article>
-	<article>
-		<figure></figure>
-		<article></article>
+	<article id="botn_anunc" class="obautomarg">
+		<div id="anunbtn">Denunciar</div>
+	</article>
+	<article id="idngal" class="obautomarg">
+		<figure id="galery">
+			<div class="slider-wrapper theme-default">
+				<div id="slider" class="nivoSlider">
+					<img src="imagenes/galery/do_1170_570.jpg" alt="imagen" title="#caption1" />
+				</div>
+				<div id="caption1" style="display:none;">
+					<span>Texto</span>
+				</div>
+			</div>
+		</figure>
+		<article id="indicadores">
+			<h2 class="ha">Indicadores</h2>
+			<article id="cambios">
+				<div id="bgBody">
+					<script type="text/javascript">
+						// <![CDATA[
+						var bgHost = "http://www.applab.in/";
+						var bgType = "CO-19284-1";
+						var bgIndi = "9|10|3";
+						(function(d){ var f = bgHost+ "apps/indicators/"+bgType+"/"+bgIndi+"/functions.js"; d.write(unescape("%3Cscript src='"+f+"' type='text/javascript'%3E%3C/script%3E")); })(document);
+						// ]]>
+						$("#bgBody").attr("style","padding:0;");
+					</script>
+				</div>
+			</article>
+			<h2 class="hb">Clima</h2>
+			<article id="tiempo">
+				<!-- www.TuTiempo.net - Ancho:158px - Alto:66px -->
+				<div id="TT_vWZALxdxdrKat16KLfzDDjjjDWnKTQt2LYEdkZyoq1D"><a href="http://www.tutiempo.net">El tiempo 15 días</a></div>
+				<script src="http://www.tutiempo.net/widget/eltiempo_vWZALxdxdrKat16KLfzDDjjjDWnKTQt2LYEdkZyoq1D"></script>
+			</article>
+			<article id="txcldo">
+				Cúcuta - Norte de Santander
+			</article>
+		</article>
 	</article>
 	<section>
+		<article id="sitio" class="obautomarg">
+			<h2 id="hdosG">Sitios de Interés</h2>
+			<article id="todositios">
+				<article class="owl-carousel owl-theme owl-loaded">
+					<div class="item">
+						<figure>
+							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
+						</figure>
+					</div>
+					<div class="item">
+						<figure>
+							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
+						</figure>
+					</div>
+					<div class="item">
+						<figure>
+							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
+						</figure>
+					</div>
+					<div class="item">
+						<figure>
+							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
+						</figure>
+					</div>
+					<div class="item">
+						<figure>
+							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
+						</figure>
+					</div>
+				</article>
+			</article>
+		</article>
 	</section>
 	<footer></footer>
+	<script src="js/nivo_slider.js"></script>
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('#slider').nivoSlider({
+				effect: 'fade',
+				slices: 15,
+				boxCols: 8,
+				boxRows: 4,
+				animSpeed: 500,
+				pauseTime: 10000,
+				pauseOnHover:true,
+				startSlide: 0,
+				directionNav: true,
+				controlNav: false,
+				controlNavThumbs: false,
+				pauseOnHover: true,
+				manualAdvance: false,
+				prevText: 'Prev',
+				nextText: 'Next',
+				randomStart: false,
+			});
+		});
+		// http://web.tursos.com/como-implementar-nivo-slider-en-tu-pagina-web/
+	</script>
+	<script type="text/javascript">
+		$(document).on("ready",icionowl);
+		function icionowl () {
+			 $('.owl-carousel').owlCarousel({
+				autoplay:true,
+				autoplayTimeout:3000,
+				autoplayHoverPause:true,
+				dots:false,
+				loop:false,
+				margin:10,
+				responsiveClass:true,
+				nav:false,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:2
+					},
+					1000:{
+						items:3
+					},
+					1200:{
+						items:4
+					}
+				}
+			});
+		}
+	</script>
 </body>
 </html>

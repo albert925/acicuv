@@ -40,6 +40,27 @@ header{
 		header #redes a:hover,header #redes a:active{
 			transform: scale(1.1);
 		}
+#automargen,.obautomarg{
+	margin: 0 auto;
+	max-width: 1100px;
+}
+#botn_anunc{
+	background: #006000;
+	display: flex;
+	-webkit-justify-content: flex-end;
+	-ms-justify-content: flex-end;
+	justify-content: flex-end;
+}
+	#botn_anunc #anunbtn{
+		background: #141417;
+		color: #fff;
+		cursor: pointer;
+		margin-right: 1em;
+		padding: 0.5em;
+	}
+	#botn_anunc #anunbtn:hover,#botn_anunc #anunbtn:active{
+		background: #003300;
+	}
 #cajmn{
 	background:#141417;
 	color: #fff;

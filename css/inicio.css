@@ -1,0 +1,61 @@
+#bgBody{
+	padding: 0;
+}
+		#bgBody ul li{border-bottom: 1px solid #141417;}
+		#bgBody ul li:hover,#bgBody ul li:active{
+			background: #ABB1AA;
+		}
+		#bgBody ul li,#bgBody div{
+			background: #E4E4E4;
+		}
+#idngal{
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+	#idngal #galery{
+		background: #202020;
+		padding: 0.5em;
+		width: 55%;
+	}
+	#idngal #indicadores{
+		width: 40%;
+	}
+	#indicadores h2{
+		margin: 0;
+		text-transform: uppercase;
+	}
+	#indicadores .ha{
+		background: #004000;
+		color: #fff;
+		padding-top:1em; 
+	}
+	#indicadores .hb{
+		background: #E4E4E4;
+		position: relative;
+		margin-top: -0.8em;
+	}
+	#tiempo div{
+		margin: 0 auto;
+	}
+#todositios{
+	background: #004000;
+	padding: 0.5em 0;
+}
+#txcldo{
+	background: #BFC0C2;
+	color: #005F00;
+	text-align: center;
+}
+@media screen and (max-width: 900px){
+	#idngal{
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+		#idngal #galery,#idngal #indicadores{
+			margin: 1em auto;
+			width: 90%;
+		}
+}
