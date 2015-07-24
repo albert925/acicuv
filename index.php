@@ -125,8 +125,63 @@
 				</article>
 			</article>
 		</article>
+		<article id="automargen" class="columnflx">
+			<article class="art1">
+				<article class="pasan">
+					<div id="htresG">
+						<h2>Que está pasando</h2>
+						<a id="bonG" href="#">Mas +</a>
+					</div>
+					<article></article>
+				</article>
+				<figure class="pub1 gpubli"></figure>
+				<figure class="pub2 gpubli"></figure>
+			</article>
+			<article class="art2">
+				<article class="deun">
+					<h2 id="hdosG">Opinión</h2>
+					<article class="caddnun"></article>
+					<a id="bonG" href="#">Mas +</a>
+				</article>
+				<article class="editorial">
+					<h2 id="hdosG">Editorial</h2>
+					<article class="caddcolumn"></article>
+					<a id="bonG" href="#">Mas +</a>
+				</article>
+			</article>
+			<article class="art3">
+				<figure class="pub3 gpubli"></figure>
+				<figure class="pub4 gpubli"></figure>
+				<article class="clasificados">
+					<h2 id="hodsoG">Clasificados</h2>
+					<article class="cadclasif"></article>
+					<a id="bonG" href="#">Mas +</a>
+				</article>
+			</article>
+		</article>
 	</section>
-	<footer></footer>
+	<footer>
+		<article id="automargen" class="fooflex">
+			<article class="fotcont">
+				<div>304 591 6717</div>
+				<div>acicuv@gmail.com</div>
+				<div>av 6 #10-20 Ofic. 10-03 Ed. Dacach</div>
+				<div>Cúcuta-Colombia</div>
+			</article>
+			<article class="redfin">
+				<article id="redes">
+					<a href="" target="_blank"><span class="icon-facebook"></span></a>
+					<a href="" target="_blank"><span class="icon-twitter"></span></a>
+					<a href="" target="_blank"><span class="icon-instagram"></span></a>
+					<a href="" target="_blank"><span class="icon-youtube3"></span></a>
+				</article>
+			</article>
+		</article>
+		<article id="automargen" class="fooffin">
+			CONAXPORT © 2015 &nbsp;&nbsp;todos los derechos reservados &nbsp;- &nbsp;PBX (5) 841 733 &nbsp;&nbsp;Cúcuta - Colombia &nbsp;&nbsp;
+			<a href="http://conaxport.com/" target="_blank">www.conaxport.com</a>
+		</article>
+	</footer>
 	<script src="js/nivo_slider.js"></script>
 	<script type="text/javascript">
 		$(window).load(function(){

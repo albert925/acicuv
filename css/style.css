@@ -3,6 +3,65 @@ body{
 	font-family: arial;
 	font-size: 16px;
 }
+footer{
+	padding-top: 1em;
+}
+	footer .fooflex{
+		-webkit-align-items: flex-end;
+		-ms-align-items: flex-end;
+		align-items: flex-end;
+		background: url(../imagenes/footer_fondo.png) no-repeat center;
+		background-size: cover;
+		color: #fff;
+		display: flex;
+		-webkit-justify-content: space-between;
+		-ms-justify-content: space-between;
+		justify-content: space-between;
+		height: 14em;
+		padding: 1em 0;
+	}
+		footer .fooffin{
+			background: #006000;
+			color: #fff;
+			font-size: 12px;
+			padding: 0.5em 0;
+			text-align: center;
+		}
+			footer .fooffin a{
+				color: #fff;
+				text-decoration: none;
+			}
+			footer .fooffin a:hover,footer .fooffin:active{
+				text-decoration: underline;
+			}
+		footer .fooflex .fotcont{
+			margin-left: 1em;
+		}
+		footer .fooflex .redfin{
+			margin-right: 1em;
+		}
+			footer .fooflex .redfin #redes{
+				display: flex;
+			}
+				footer .fooflex .redfin #redes a{
+					-webkit-align-items: center;
+					-ms-align-items: center;
+					align-items: center;
+					background: #085300;
+					color: #fff;
+					display: flex;
+					font-size: 25px;
+					height: 35px;
+					-webkit-justify-content: center;
+					-ms-justify-content: center;
+					justify-content: center;
+					margin: 0 0.25em;
+					text-decoration: none;
+					width: 35px;
+				}
+				footer .fooflex .redfin #redes a:hover,footer .fooflex .redfin #redes a:active{
+					transform: scale(1.1);
+				}
 header{
 	-webkit-align-items: flex-end;
 	-ms-align-items: flex-end;
@@ -44,6 +103,15 @@ header{
 	margin: 0 auto;
 	max-width: 1100px;
 }
+#bonG{
+	background: #003F00;
+	color: #fff;
+	padding: 0 0.5em;
+	text-decoration: none;
+}
+#bonG:hover,#bonG:active{
+	background: #003000;
+}
 #botn_anunc{
 	background: #006000;
 	display: flex;
@@ -65,6 +133,23 @@ header{
 	background:#141417;
 	color: #fff;
 }
+#hdosG{
+	border-bottom: 5px solid #003F00;
+	color: #202022;
+	margin: 0.5em 0;
+}
+#htresG{
+	border-bottom: 5px solid #003F00;
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+	margin: 0.5em 0;
+}
+	#htresG h2{
+		color: #202022;
+		margin: 0; 
+	}
 #mn_mv{
 	cursor: pointer;
 	display: none;
@@ -120,6 +205,18 @@ header{
 			display: flex;
 		}
 @media screen and (max-width: 900px){
+		footer .fooflex{
+			-webkit-align-items: initial;
+			-ms-align-items: initial;
+			align-items: initial;
+			-webkit-flex-direction: column;
+			-ms-flex-direction: column;
+			flex-direction: column;
+		}
+			footer .fooflex .fotcont,footer .fooflex .redfin{
+				margin: 1em auto;
+				width: 90%;
+			}
 	header{
 		background-size: 100%,cover;
 	}
