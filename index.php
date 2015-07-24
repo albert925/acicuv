@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/inicio.css" />
 	<script src="js/jquery_2_1_1.js"></script>
+	<script src="js/scrippag.js"></script>
 	<script src="js/owl_carousel_min.js"></script>
 </head>
 <body>
@@ -41,8 +42,8 @@
 				<li><a href="">Inicio</a></li>
 				<li><a href="quejas">Quejas</a></li>
 				<li><a href="nosotros">Quienes somos</a></li>
-				<li><a href="pasando">Que está pasando</a>
-					<ul>
+				<li class="submen" data-num="1"><a href="pasando">Que está pasando</a>
+					<ul class="children1">
 						<li><a href="#">Menu1</a></li>
 					</ul>
 				</li>

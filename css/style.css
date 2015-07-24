@@ -227,6 +227,9 @@ header{
 		-ms-justify-content: flex-end;
 		justify-content: flex-end;
 		padding: 0.5em 0;
+		top: 0;
+		width: 100%;
+		z-index: 35;
 	}
 	#mn_mv{
 		display: block;
@@ -238,7 +241,7 @@ header{
 		left: -100%;
 		overflow: scroll;
 		position: fixed;
-		top: 7em;
+		top: 2em;
 		width: 70%;
 		z-index: 30;
 	}
