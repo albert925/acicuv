@@ -1,0 +1,168 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);/*font-family: 'Source Code Pro', ;*/
+body{
+	font-family: arial;
+	font-size: 16px;
+}
+header{
+	-webkit-align-items: flex-end;
+	-ms-align-items: flex-end;
+	align-items: flex-end;
+	background-image: url(../imagenes/baner_logo.png),url(../imagenes/banner_fondo.png);
+	background-repeat: no-repeat,no-repeat;
+	background-position: 1em,center;
+	background-size: auto,cover;
+	height: 12em;
+	display: flex;
+	-webkit-justify-content: flex-end;
+	-ms-justify-content: flex-end;
+	justify-content: flex-end;
+}
+	header #redes{
+		display: flex;
+		margin: 0 0.5em 1em 0;
+	}
+		header #redes a{
+			-webkit-align-items: center;
+			-ms-align-items: center;
+			align-items: center;
+			background: #085300;
+			display: flex;
+			font-size: 25px;
+			color: #7B9472;
+			height: 32px;
+			-webkit-justify-content: center;
+			-ms-justify-content: center;
+			justify-content: center;
+			margin: 0 0.25em;
+			text-decoration: none;
+			width: 32px;
+		}
+		header #redes a:hover,header #redes a:active{
+			transform: scale(1.1);
+		}
+#cajmn{
+	background:#141417;
+	color: #fff;
+}
+#mn_mv{
+	cursor: pointer;
+	display: none;
+	font-size: 25px;
+	transform: scale(1.8);
+}
+	#mn_mv:hover,#mn_mv:active{
+		transform: scale(1.9);
+	}
+#mnP{
+}
+	#mnP a{
+		color: #fff;
+		padding: 0.5em;
+		text-decoration: none;
+	}
+	#mnP a:hover,#mnP a:active{
+		background: #404040;
+	}
+	#mnP ul{
+		display: flex;
+		-webkit-justify-content: space-around;
+		-ms-justify-content: space-around;
+		justify-content: space-around;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		z-index: 35;
+	}
+		#mnP ul li{
+			padding: 0.5em;
+			margin: 0;
+		}
+			#mnP ul li ul{
+				background:#141417;
+				display: none;
+				-webkit--ms-flex-direction: column;
+				-ms-flex-direction: column;
+				flex-direction: column;
+				position: absolute;
+				text-align: center;
+			}
+				#mnP ul li ul li{
+					border-bottom: 1px solid #ADADAD;
+					padding: 0.5em 0;
+				}
+				#mnP ul li ul a{
+					border:0;
+					font-weight: normal;
+					padding: 0.5em 1em;
+				}
+		#mnP ul li:hover>ul{
+			display: flex;
+		}
+@media screen and (max-width: 900px){
+	header{
+		background-size: 100%,cover;
+	}
+	#cajmn{
+		align-items: center;
+		display: flex;
+		-webkit-justify-content: flex-end;
+		-ms-justify-content: flex-end;
+		justify-content: flex-end;
+		padding: 0.5em 0;
+	}
+	#mn_mv{
+		display: block;
+		margin-right: 1em;
+	}
+	#mnP{
+		background: #141417;
+		height: calc(100% - 180px);
+		left: -100%;
+		overflow: scroll;
+		position: fixed;
+		top: 7em;
+		width: 70%;
+		z-index: 30;
+	}
+		#mnP a{
+			border-right: 0;
+			text-align: center;
+		}
+		#mnP ul{
+			display: block;
+			margin-top: 1em;
+			width: 100%;
+		}
+			#mnP ul li{
+				border-bottom:1px solid #0D4374;
+				display: block;
+				padding: 0.5em 0;
+				text-align: left;
+			}
+				#mnP ul li ul{
+					width: 100%;
+					position: relative;
+					z-index: 1;
+				}
+				#mnP ul li:hover ul{
+					display: none;
+				}
+				#mnP ul li .submen{
+					cursor: pointer;
+					margin-top: -1em;
+					position: absolute;
+					right: 2em;
+					transform: scale(1.5) rotate(180deg);
+				}
+				#mnP ul li .submen:hover,#mnP ul li .submen:active{
+					transform: scale(2) rotate(180deg);
+				}
+}
+@media screen and (max-width: 500px){
+	header{
+		background-image: url(../imagenes/baner_logo_mov.png),url(../imagenes/banner_fondo.png);
+		background-size: 24em,cover;
+		background-position:  top center,center;
+		height: 19em;
+	}
+}
