@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="../../css/normalize.css" />
 	<link rel="stylesheet" href="../../css/iconos/style.css" />
 	<link rel="stylesheet" href="../../css/style.css" />
+	<link rel="stylesheet" href="../../css/admin.css" />
 	<script src="../../js/jquery_2_1_1.js"></script>
 	<script src="../../js/scrippag.js"></script>
 	<script src="../../js/admin.js"></script>
@@ -62,6 +63,25 @@
 	</article>
 	<section>
 		<h1><?php echo "$usad"; ?></h1>
+		<article id="automargen" class="flA">
+			<article class="columninput">
+				<h2 id="hdosG">Usuario</h2>
+				<input type="text" id="usfF" value="<?php echo $usad ?>" />
+				<div id="txB"></div>
+				<input type="submit" value="Modificar" id="cambA" data-adm="<?php echo $idad ?>" />
+			</article>
+			<article class="columninput">
+				<h2 id="hdosG">Cambiar contraseña</h2>
+				<label>*<b>Contraseña actual</b></label>
+				<input type="password" id="coac" />
+				<label>*<b>Contraseña nueva</b></label>
+				<input type="password" id="cona" />
+				<label>*<b>Repite la contraseña nueva</b></label>
+				<input type="password" id="conb" />
+				<div id="txC"></div>
+				<input type="submit" value="Modificar" id="cambB" data-adm="<?php echo $idad ?>" />
+			</article>
+		</article>
 	</section>
 	<footer>
 		<article id="automargen" class="fooflex">
