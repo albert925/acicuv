@@ -47,6 +47,7 @@ h2{text-align: center;}
 	justify-content: space-around;
 }
 	.flB figure{
+		margin-bottom: 1em;
 		width: 40%;
 	}
 .tdscj{
@@ -69,7 +70,7 @@ h2{text-align: center;}
 			margin: 1em auto;
 			width: 90%;
 		}
-		.flB figure{
+		.flB figure,.flB article{
 			margin: 1em auto;
 			width: 90%;
 		}
