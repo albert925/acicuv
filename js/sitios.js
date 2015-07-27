@@ -42,7 +42,7 @@ function cambiarimgsitio () {
 		}
 		else{
 			var formu=new FormData($("#stlG")[0]);
-		$.ajax({
+			$.ajax({
 				url: '../../../modifimgsitio.php',
 				type: 'POST',
 				data: formu,
