@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="../../../css/admin.css" />
 	<script src="../../../js/jquery_2_1_1.js"></script>
 	<script src="../../../js/scrippag.js"></script>
+	<script src="../../../js/scadmin.js"></script>
 	<script src="../../../js/slider.js"></script>
 </head>
 <body>
@@ -61,8 +62,81 @@
 			</ul>
 		</nav>
 	</article>
+	<nav id="mnB">
+		<a id="btA" href="#">Nuevo Imagen</a>
+	</nav>
 	<section>
 		<h1>Slide Imágenes</h1>
+		<article id="cjA" class="tdscj">
+			<article id="automargen"> 
+				<form action="#" method="post" enctype="multipart/form-data" id="galG" class="columninput">
+					<label for="galig">*<b>Nuevo Imagen (resolución 1170 x 570)</b></label>
+					<input type="file" id="galig" name="galig" required />
+					<label><b>Link o url ("http://www.dominio.com" o "https://www.dominio.com")</b></label>
+					<input type="url" id="lkgal" name="lkgal" />
+					<div id="txA"></div>
+					<input type="submit" value="Subir e ingresar" id="nvgaly" />
+				</form>
+			</article>
+		</article>
+		<article id="automargen" class="flB">
+			<?php
+				error_reporting(E_ALL ^ E_NOTICE);
+				$tamno_pagina=15;
+				$pagina= $_GET['pagina'];
+				if (!$pagina) {
+					$inicio=0;
+					$pagina=1;
+				}
+				else{
+					$inicio= ($pagina - 1)*$tamno_pagina;
+				}
+				$ssql="SELECT * from galeria order by id_gal desc";
+				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
+				$num_total_registros= mysql_num_rows($rs);
+				$total_paginas= ceil($num_total_registros / $tamno_pagina);
+				$gsql="SELECT * from galeria order by id_gal desc limit $inicio, $tamno_pagina";
+				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
+				while ($gh=mysql_fetch_array($impsql)) {
+					$idgl=$gh['id_gal'];
+					$rtgl=$gh['rut_gal'];
+					$lkgl=$gh['lk_gal'];
+			?>
+			<figure>
+				<img src="../../../<?php echo $rtgl ?>" alt="<?php echo $idgl ?>" />
+				<figcaption class="columninput">
+					<a href="<?php echo $lkgl ?>" target="_blank"><?php echo "$lkgl"; ?></a>
+					<a class="doll" href="borr_gal.php?br=<?php echo $idgl ?>">Borrar</a>
+				</figcaption>
+			</figure>
+			<?php
+				}
+			?>
+		</article>
+		<article id="automargen">
+			<br />
+			<b>Páginas: </b>
+			<?php
+				//muestro los distintos indices de las paginas
+				if ($total_paginas>1) {
+					for ($i=1; $i <=$total_paginas ; $i++) { 
+						if ($pagina==$i) {
+							//si muestro el indice del la pagina actual, no coloco enlace
+				?>
+					<b><?php echo $pagina." "; ?></b>
+				<?php
+						}
+						else{
+							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+				?>
+							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
+
+				<?php
+						}
+					}
+				}
+			?>
+		</article>
 	</section>
 	<footer>
 		<article id="automargen" class="fooflex">
