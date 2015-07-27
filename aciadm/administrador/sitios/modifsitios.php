@@ -10,15 +10,34 @@
 			$usad=$ad['user_adm'];
 			$tpad=$ad['tp_adm'];
 		}
+		$idR=$_GET['dt'];
+		if ($idR=="") {
+			echo "<script type='text/javascript'>";
+				echo "alert('id sitio no disponible');";
+				echo "var pagina='../sitios';";
+				echo "document.location.href=pagina;";
+			echo "</script>";
+		}
+		else{
+			$datos="SELECT * from sitios where id_st=$idR";
+			$sql_datos=mysql_query($datos,$conexion) or die (mysql_error());
+			$numdatos=mysql_num_rows($sql_datos);
+			if ($numdatos>0) {
+				while ($dt=mysql_fetch_array($sql_datos)) {
+					$nmst=$dt['nam_st'];
+					$rtst=$dt['rt_st'];
+					$lkst=$dt['lk_st'];
+					$xtst=$dt['txt_ts'];
+				}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
-	<meta name="description" content="Administrar slider" />
-	<meta name="keywords" content="todos los slider" />
-	<title>Adminsitrar slider|Acicuv</title>
+	<meta name="description" content="Administrar sitios" />
+	<meta name="keywords" content="todos los sitios" />
+	<title><?php echo "$nmst"; ?>|Acicuv</title>
 	<link rel="icon" href="../../../imagenes/icono.png" />
 	<link rel="stylesheet" href="../../../css/normalize.css" />
 	<link rel="stylesheet" href="../../../css/iconos/style.css" />
@@ -27,7 +46,8 @@
 	<script src="../../../js/jquery_2_1_1.js"></script>
 	<script src="../../../js/scrippag.js"></script>
 	<script src="../../../js/scadmin.js"></script>
-	<script src="../../../js/slider.js"></script>
+	<script src="../../../js/sitios.js"></script>
+	<script src="../../../ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<header id="automargen">
@@ -42,8 +62,8 @@
 		<div id="mn_mv"><span class="icon-menu"></span></div>
 		<nav id="mnP">
 			<ul>
-				<li><a class="sill" href="../galery">Slide Imágenes</a></li>
-				<li><a href="../sitios">Sitios de Interés</a></li>
+				<li><a href="../galery">Slide Imágenes</a></li>
+				<li><a class="sill" href="../sitios">Sitios de Interés</a></li>
 				<li><a href="../denuncia">Quejas o denuncias</a></li>
 				<li><a href="../publicidad">Publicidad</a></li>
 				<li><a href="../pasando">Que está pasando</a></li>
@@ -63,79 +83,37 @@
 		</nav>
 	</article>
 	<nav id="mnB">
-		<a id="btA" href="#">Nuevo Imagen</a>
+		<a href="../sitios">Ver Sitios</a>
 	</nav>
 	<section>
-		<h1>Slide Imágenes</h1>
-		<article id="cjA" class="tdscj">
-			<article id="automargen"> 
-				<form action="#" method="post" enctype="multipart/form-data" id="galG" class="columninput">
-					<label for="galig">*<b>Nuevo Imagen (resolución 1170 x 570)</b></label>
-					<input type="file" id="galig" name="galig" required />
-					<label><b>Link o url ("http://www.dominio.com" o "https://www.dominio.com")</b></label>
-					<input type="url" id="lkgal" name="lkgal" />
-					<div id="txA"></div>
-					<input type="submit" value="Subir e ingresar" id="nvgaly" />
-				</form>
-			</article>
-		</article>
-		<article id="automargen" class="flB">
-			<?php
-				error_reporting(E_ALL ^ E_NOTICE);
-				$tamno_pagina=15;
-				$pagina= $_GET['pagina'];
-				if (!$pagina) {
-					$inicio=0;
-					$pagina=1;
-				}
-				else{
-					$inicio= ($pagina - 1)*$tamno_pagina;
-				}
-				$ssql="SELECT * from galeria order by id_gal desc";
-				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
-				$num_total_registros= mysql_num_rows($rs);
-				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from galeria order by id_gal desc limit $inicio, $tamno_pagina";
-				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
-				while ($gh=mysql_fetch_array($impsql)) {
-					$idgl=$gh['id_gal'];
-					$rtgl=$gh['rut_gal'];
-					$lkgl=$gh['lk_gal'];
-			?>
-			<figure>
-				<img src="../../../<?php echo $rtgl ?>" alt="<?php echo $idgl ?>" />
-				<figcaption class="columninput">
-					<a href="<?php echo $lkgl ?>" target="_blank"><?php echo "$lkgl"; ?></a>
-					<a class="doll" href="borr_gal.php?br=<?php echo $idgl ?>">Borrar</a>
-				</figcaption>
-			</figure>
-			<?php
-				}
-			?>
-		</article>
+		<h1><?php echo "$nmst"; ?></h1>
 		<article id="automargen">
-			<br />
-			<b>Páginas: </b>
-			<?php
-				//muestro los distintos indices de las paginas
-				if ($total_paginas>1) {
-					for ($i=1; $i <=$total_paginas ; $i++) { 
-						if ($pagina==$i) {
-							//si muestro el indice del la pagina actual, no coloco enlace
-				?>
-					<b><?php echo $pagina." "; ?></b>
-				<?php
-						}
-						else{
-							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
-				?>
-							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
-
-				<?php
-						}
-					}
-				}
-			?>
+			<h2>Cambiar Imagen</h2>
+			<form action="#" method="post" enctype="multipart/form-data" id="stlG" class="columninput">
+				<input type="text" id="idstgl" name="idstgl" value="<?php echo $idR ?>" requried style="display:none;" />
+				<a href="../../../<?php echo $rtst ?>" target="_blank"><?php echo "$rtst"; ?></a>
+				<label>*<b>Imagen (resolución 1400 x 870)</b></label>
+				<input type="file" id="fgsgt" name="fgsgt" required />
+				<div id="txB"></div>
+				<input type="submit" value="Cambiar" id="fcmigl" />
+			</form>
+		</article>
+		<article id="automargen"> 
+			<h2>Modificar</h2>
+			<form action="modifc_sitio.php" method="post" class="columninput">
+				<input type="text" id="idsbb" name="idsbb" value="<?php echo $idR ?>" requried style="display:none;" />
+				<label for="ttst">*<b>Nombre</b></label>
+				<input type="text" id="ttst" name="ttst" required value="<?php echo $nmst ?>" />
+				<label><b>Link o url ("http://www.dominio.com" o "https://www.dominio.com")</b></label>
+				<input type="url" id="lkst" name="lkst" value="<?php echo $lkst ?>" />
+				<label><b>Texto</b></label>
+				<textarea id="editor1" name="xxttst"><?php echo "$xtst"; ?></textarea>
+				<script>
+					CKEDITOR.replace('xxttst');
+				</script>
+				<div id="txA"></div>
+				<input type="submit" value="Modificar" id="nvgaly" />
+			</form>
 		</article>
 	</section>
 	<footer>
@@ -163,6 +141,15 @@
 </body>
 </html>
 <?php
+			}
+			else{
+				echo "<script type='text/javascript'>";
+					echo "alert('sitio no existe o eliminado');";
+					echo "var pagina='../sitios';";
+					echo "document.location.href=pagina;";
+				echo "</script>";
+			}
+		}
 	}
 	else{
 		echo "<script type='text/javascript'>";

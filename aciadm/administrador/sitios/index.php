@@ -16,9 +16,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
-	<meta name="description" content="Administrar slider" />
-	<meta name="keywords" content="todos los slider" />
-	<title>Adminsitrar slider|Acicuv</title>
+	<meta name="description" content="Administrar sitios" />
+	<meta name="keywords" content="todos los sitios" />
+	<title>Adminsitrar Sitios|Acicuv</title>
 	<link rel="icon" href="../../../imagenes/icono.png" />
 	<link rel="stylesheet" href="../../../css/normalize.css" />
 	<link rel="stylesheet" href="../../../css/iconos/style.css" />
@@ -27,7 +27,8 @@
 	<script src="../../../js/jquery_2_1_1.js"></script>
 	<script src="../../../js/scrippag.js"></script>
 	<script src="../../../js/scadmin.js"></script>
-	<script src="../../../js/slider.js"></script>
+	<script src="../../../js/sitios.js"></script>
+	<script src="../../../ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<header id="automargen">
@@ -42,8 +43,8 @@
 		<div id="mn_mv"><span class="icon-menu"></span></div>
 		<nav id="mnP">
 			<ul>
-				<li><a class="sill" href="../galery">Slide Imágenes</a></li>
-				<li><a href="../sitios">Sitios de Interés</a></li>
+				<li><a href="../galery">Slide Imágenes</a></li>
+				<li><a class="sill" href="../sitios">Sitios de Interés</a></li>
 				<li><a href="../denuncia">Quejas o denuncias</a></li>
 				<li><a href="../publicidad">Publicidad</a></li>
 				<li><a href="../pasando">Que está pasando</a></li>
@@ -63,19 +64,26 @@
 		</nav>
 	</article>
 	<nav id="mnB">
-		<a id="btA" href="#">Nuevo Imagen</a>
+		<a id="btB" href="#">Nuevo Sitio</a>
 	</nav>
 	<section>
-		<h1>Slide Imágenes</h1>
-		<article id="cjA" class="tdscj">
+		<h1>Sitios</h1>
+		<article id="cjB" class="tdscj">
 			<article id="automargen"> 
-				<form action="#" method="post" enctype="multipart/form-data" id="galG" class="columninput">
-					<label for="galig">*<b>Nuevo Imagen (resolución 1170 x 570)</b></label>
-					<input type="file" id="galig" name="galig" required />
+				<form action="../../../new_sitio.php" method="post" enctype="multipart/form-data" id="stlG" class="columninput">
+					<label for="ttst">*<b>Nombre</b></label>
+					<input type="text" id="ttst" name="ttst" required />
+					<label for="galig">*<b>Nuevo Imagen (resolución 1400 x 870)</b></label>
+					<input type="file" id="galst" name="galst" required />
 					<label><b>Link o url ("http://www.dominio.com" o "https://www.dominio.com")</b></label>
-					<input type="url" id="lkgal" name="lkgal" />
+					<input type="url" id="lkst" name="lkst" />
+					<label><b>Texto</b></label>
+					<textarea id="editor1" name="xxttst"></textarea>
+					<script>
+						CKEDITOR.replace('xxttst');
+					</script>
 					<div id="txA"></div>
-					<input type="submit" value="Subir e ingresar" id="nvgaly" />
+					<input type="submit" value="Ingresar" id="nvgaly" />
 				</form>
 			</article>
 		</article>
@@ -91,22 +99,24 @@
 				else{
 					$inicio= ($pagina - 1)*$tamno_pagina;
 				}
-				$ssql="SELECT * from galeria order by id_gal desc";
+				$ssql="SELECT * from sitios order by id_st desc";
 				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
 				$num_total_registros= mysql_num_rows($rs);
 				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from galeria order by id_gal desc limit $inicio, $tamno_pagina";
+				$gsql="SELECT * from sitios order by id_st desc limit $inicio, $tamno_pagina";
 				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
 				while ($gh=mysql_fetch_array($impsql)) {
-					$idgl=$gh['id_gal'];
-					$rtgl=$gh['rut_gal'];
-					$lkgl=$gh['lk_gal'];
+					$idst=$gh['id_st'];
+					$nmst=$gh['nam_st'];
+					$rtst=$gh['rt_st'];
+					$lkst=$gh['lk_st'];
+					$xtst=$gh['txt_st'];
 			?>
 			<figure>
-				<img src="../../../<?php echo $rtgl ?>" alt="<?php echo $idgl ?>" />
+				<img src="../../../<?php echo $rtst ?>" alt="<?php echo $idst ?>" />
 				<figcaption class="columninput">
-					<a href="<?php echo $lkgl ?>" target="_blank"><?php echo "$lkgl"; ?></a>
-					<a class="doll" href="borr_gal.php?br=<?php echo $idgl ?>">Borrar</a>
+					<a id="dsm" href="modifsitios.php?dt=<?php echo $idst ?>">Modificar</a>
+					<a class="doll" href="borr_sitio.php?br=<?php echo $idst ?>">Borrar</a>
 				</figcaption>
 			</figure>
 			<?php

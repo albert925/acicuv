@@ -1,3 +1,13 @@
+h2{text-align: center;}
+#dsm{
+	background: #005300;
+	color: #fff;
+	padding: 0.5em 0;
+	text-decoration: none;
+}
+#dsm:hover,#dsm:active{
+	background: #002200;
+}
 #mnB{
 	display: flex;
 	-webkit-justify-content: space-around;
