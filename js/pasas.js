@@ -2,6 +2,7 @@ $(document).on("ready",inicio_pasas);
 function inicio_pasas () {
 	$("#nvpasand").on("click",validselects);
 	$("#nvtppas").on("click",nuevo_tipo);
+	$("#camvspu").on("click",cambiar_imagen);
 	$(".cambtip").on("click",camb_pasas);
 }
 var mal={color:"#BD2119"};
@@ -83,5 +84,71 @@ function camb_pasas () {
 				$("#txB_"+ida).css(mal).html(sttp);
 			}
 		});
+	}
+}
+function cambiar_imagen () {
+	var ida=$("#idda").val();
+	var gif=$("#jhpas")[0].files[0];
+	var namegif=gif.name;
+	var extegif=namegif.substring(namegif.lastIndexOf('.')+1);
+	var tamgif=gif.size;
+	var tipogif=gif.type;
+	if (!es_imagen(extegif)) {
+		$("#txC").css(mal).text("Tipo de imagen no permitido");
+		return false;
+	}
+	else{
+		$("#txC").css(normal).text("");
+		var formu=new FormData($("#glPa")[0]);
+		$.ajax({
+			url: '../../../modifcimgpasando.php',
+			type: 'POST',
+			data: formu,
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend:function () {
+				$("#txC").prepend("<center><img src='../../../imagenes/loadingb.gif' alt='loading' style='width:20px;' /></center>");
+			},
+			success:reulimg,
+			error:function () {
+				$("#txC").css(mal).text("Ocurrió un error");
+				$("#txC").fadeIn();$("#txC").fadeOut(3000);
+			}
+		});
+		return false;
+	}
+}
+function reulimg (dtst) {
+	if (dtst=="2") {
+		$("#txC").css(mal).text("Carpeta sin permisos o resolución de imagen no permitido");
+		$("#txC").fadeIn();$("#txC").fadeOut(3000);
+		return false;
+	}
+	else{
+		if (dtst=="3") {
+			$("#txC").css(mal).text("Tamaño no permitido");
+			$("#txC").fadeIn();$("#txC").fadeOut(3000);
+			return false;
+		}
+		else{
+			if (dtst=="4") {
+				$("#txC").css(mal).text("Carpeta sin permisos o resolución de imagen no permitido");
+				$("#txC").fadeIn();$("#txC").fadeOut(3000);
+				return false;
+			}
+			else{
+				if (dtst=="5") {
+					$("#txC").css(bien).text("Imagen subida");
+					$("#txC").fadeIn();$("#txC").fadeOut(3000);
+					location.reload(20);
+				}
+				else{
+					$("#txC").css(mal).html(dtst);
+					$("#txC").fadeIn();
+					return false;
+				}
+			}
+		}
 	}
 }
