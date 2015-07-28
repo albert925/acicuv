@@ -10,18 +10,18 @@
 			$usad=$ad['user_adm'];
 			$tpad=$ad['tp_adm'];
 		}
-		$a=$_POST['ttst'];
-		$b=$_POST['lkst'];
-		$c=$_POST['xxttst'];
+		$a=$_POST['ttpas'];
+		$b=$_POST['sltp'];
+		$c=$_POST['xxpas'];
 		$hoy=date("Y-m-d");
 		//-------------------------------------------
-		$fotAcosmodT=$_FILES['galst']['name'];
-		$tipfotA=$_FILES['galst']['type'];
-	 	$almfotA=$_FILES['galst']['tmp_name'];
-	 	$tamfotA=$_FILES['galst']['size'];
-	 	$erorfotA=$_FILES['galst']['error'];
+		$fotAcosmodT=$_FILES['igpas']['name'];
+		$tipfotA=$_FILES['igpas']['type'];
+	 	$almfotA=$_FILES['igpas']['tmp_name'];
+	 	$tamfotA=$_FILES['igpas']['size'];
+	 	$erorfotA=$_FILES['igpas']['error'];
 		//----------------------------------------
-		if ($a=="") {
+		if ($a=="" || $b=="0" || $b=="") {
 			echo "<script type='text/javascript'>";
 				echo "alertr('nombre o titulo en blanco');";
 				echo "var pagina='aciadm/administrador/pasando/';";
@@ -30,8 +30,10 @@
 		}
 		else{
 			if ($fotAcosmodT=="") {
+				$ingresar="INSERT into pasando(tp_id,tit_ps,txt_ps,fe_ps) values($b,'$a','$c','$hoy')";
+				mysql_query($ingresar,$conexion) or die (mysql_error());
 				echo "<script type='text/javascript'>";
-					echo "alert('Imagen no seleccionada');";
+					echo "alertr('ndato ingresado');";
 					echo "var pagina='aciadm/administrador/pasando/';";
 					echo "document.location.href=pagina;";
 				echo "</script>";
@@ -60,10 +62,10 @@
 							$size=getimagesize($almfotA);
 							$anchoimagen=$size[0];
 							$altoimagen=$size[1];
-							$anchodetermindo=1400;
-							$altodeterminad=870;
+							$anchodetermindo=1200;
+							$altodeterminad=1080;
 							if ($anchoimagen!=$anchodetermindo && $altoimagen!=$altodeterminad) {
-								echo "Resolucion de imagen no permitida debe ser 1400 x 870";
+								echo "Resolucion de imagen no permitida debe ser 1200 x 1080";
 								echo "<script type='text/javascript'>";
 									echo "alert('Resolucion de imagen no permitida');";
 									echo "var pagina='aciadm/administrador/pasando/';";
@@ -73,11 +75,11 @@
 							else{
 								$subiendo=@move_uploaded_file($almfotA, $ruta);
 								if ($subiendo) {
-									$ddf="INSERT into sitios(nam_st,txt_ts,rt_st,lk_st) 
-										values('$a','$c','$ruta','$b')";
+									$ddf="INSERT into pasando(tp_id,tit_ps,txt_ps,rut_ps,fe_ps) 
+										values($b,'$a','$c','$ruta','$hoy')";
 									mysql_query($ddf,$conexion) or die (mysql_error());
 									echo "<script type='text/javascript'>";
-										echo "alert('Sitio ingresado');";
+										echo "alert('Dato ingresado');";
 										echo "var pagina='aciadm/administrador/pasando/';";
 										echo "document.location.href=pagina;";
 									echo "</script>";
