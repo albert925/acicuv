@@ -82,6 +82,7 @@
 				</form>
 			</article>
 		</article>
+		<img src="../../../imagenes/publicidad/fondo2.jpg" />
 		<article id="automargen" class="flB">
 			<?php
 				error_reporting(E_ALL ^ E_NOTICE);
@@ -169,7 +170,7 @@
 	}
 	else{
 		echo "<script type='text/javascript'>";
-			echo "var pagina='../erroradm.html';";
+			echo "var pagina='../../erroradm.html';";
 			echo "document.location.href=pagina;";
 		echo "</script>";
 	}

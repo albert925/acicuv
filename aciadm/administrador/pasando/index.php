@@ -11,37 +11,15 @@
 			$tpad=$ad['tp_adm'];
 		}
 		$arrestad=["selecione","Activado","Desactivado"];
-		$idR=$_GET['dt'];
-		if ($idR=="") {
-			echo "<script type='text/javascript'>";
-				echo "alerrt('id de denunia no disponble');";
-				echo "var pagina='../denuncia';";
-				echo "document.location.href=pagina;";
-			echo "</script>";
-		}
-		else{
-			$datos="SELECT * from denuncia where id_dn=$idR";
-			$sql_datos=mysql_query($datos,$conexion) or die (mysql_error());
-			$numdatos=mysql_num_rows($sql_datos);
-			if ($numdatos>0) {
-				while ($dt=mysql_fetch_array($sql_datos)) {
-					$ttdn=$dt['tit_dn'];
-					$usdn=$dt['user_dn'];
-					$crdn=$dt['cor_dn'];
-					$rsdn=$dt['res_dn'];
-					$xtdn=$dt['txt_dn'];
-					$fedn=$dt['fe_dn'];
-					$esdn=$dt['es_dn'];
-				}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
-	<meta name="description" content="Administrar denuncias" />
-	<meta name="keywords" content="todos las denuncias" />
-	<title><?php echo "$ttdn"; ?>|Acicuv</title>
+	<meta name="description" content="Administrar publicidad" />
+	<meta name="keywords" content="todos las publicidad" />
+	<title>Adminsitrar pasando|Acicuv</title>
 	<link rel="icon" href="../../../imagenes/icono.png" />
 	<link rel="stylesheet" href="../../../css/normalize.css" />
 	<link rel="stylesheet" href="../../../css/iconos/style.css" />
@@ -50,8 +28,7 @@
 	<script src="../../../js/jquery_2_1_1.js"></script>
 	<script src="../../../js/scrippag.js"></script>
 	<script src="../../../js/scadmin.js"></script>
-	<script src="../../../js/denunc.js"></script>
-	<script src="../../../ckeditor/ckeditor.js"></script>
+	<script src="../../../js/pasas.js"></script>
 </head>
 <body>
 	<header id="automargen">
@@ -68,9 +45,9 @@
 			<ul>
 				<li><a href="../galery">Slide Imágenes</a></li>
 				<li><a href="../sitios">Sitios de Interés</a></li>
-				<li><a class="sill" href="../denuncia">Quejas o denuncias</a></li>
+				<li><a href="../denuncia">Quejas o denuncias</a></li>
 				<li><a href="../publicidad">Publicidad</a></li>
-				<li><a href="../pasando">Que está pasando</a></li>
+				<li><a class="sill" href="../pasando">Que está pasando</a></li>
 				<li class="submen" data-num="1"><a href="../columnis">Columnistas</a>
 					<ul class="children1">
 						<li><a href="../columnis/articulo.php">Articulos</a></li>
@@ -87,41 +64,85 @@
 		</nav>
 	</article>
 	<nav id="mnB">
-		<a href="../denuncia">Ver Denuncias</a>
+		<a id="btA" href="#">Nueva articulo que está pasando</a>
+		<a href="tipo_queesta.php">Tipos o submenu de que está pasando</a>
 	</nav>
 	<section>
-		<h1><?php echo "$ttdn"; ?></h1>
-		<article id="automargen"> 
-			<form action="modifc_denuncia.php" method="post" class="columninput">
-				<input type="text" id="ida" name="ida" value="<?php echo $idR ?>" required style="display:none;" />
-				<label for="ttde">*<b>Título</b></label>
-				<input type="text" id="ttde" name="ttde" required value="<?php echo $ttdn ?>" />
-				<label>*<b>Estado</b></label>
-				<select name="selestado">
-					<?php
-						for ($i=0; $i <=2 ; $i++) { 
-							if ($i==$esdn) {
-								$selestado="selected";
-							}
-							else{
-								$selestado="";
-							}
-					?>
-					<option value="<?php echo $i ?>" <?php echo $selestado ?>><?php echo $arrestad[$i]; ?></option>
-					<?php
+		<h1>Que está pasando</h1>
+		<article id="cjA" class="tdscj">
+			<article id="automargen"> 
+				<form action="#" method="post" enctype="multipart/form-data" id="glPu" class="columninput">
+					<label>*<b>Titulo</b></label>
+					<input type="text" id="ttpu" name="ttpu" required />
+					<label for="puig">*<b>Nuevo Imagen (resolución 1200 x 1080)</b></label>
+					<input type="file" id="puig" name="puig" required />
+					<label><b>Link o url ("http://www.dominio.com" o "https://www.dominio.com")</b></label>
+					<input type="url" id="lkpu" name="lkpu" />
+					<div id="txA"></div>
+					<input type="submit" value="Subir e ingresar" id="nvpubli" />
+				</form>
+			</article>
+		</article>
+		<article id="automargen" class="flB">
+			<?php
+				error_reporting(E_ALL ^ E_NOTICE);
+				$tamno_pagina=15;
+				$pagina= $_GET['pagina'];
+				if (!$pagina) {
+					$inicio=0;
+					$pagina=1;
+				}
+				else{
+					$inicio= ($pagina - 1)*$tamno_pagina;
+				}
+				$ssql="SELECT * from pasando order by id_ps desc";
+				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
+				$num_total_registros= mysql_num_rows($rs);
+				$total_paginas= ceil($num_total_registros / $tamno_pagina);
+				$gsql="SELECT * from pasando order by id_ps desc limit $inicio, $tamno_pagina";
+				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
+				while ($gh=mysql_fetch_array($impsql)) {
+					$idps=$gh['id_ps'];
+					$tpps=$gh['tp_id'];
+					$ttps=$gh['tit_ps'];
+					$rtps=$gh['rut_ps'];
+					$xtps=$gh['txt_ps'];
+					$feps=$gh['fe_ps'];
+			?>
+			<article>
+				<h2><?php echo "$ttps"; ?></h2>
+				<article class="columninput">
+					<a id="dsm" href="modifpasando.php?dt=<?php echo $idps ?>">Modificar</a>
+					<a class="doll" href="borr_pasando.php?br=<?php echo $idps ?>">Borrar</a>
+				</article>
+			</article>
+			<?php
+				}
+			?>
+		</article>
+		<article id="automargen">
+			<br />
+			<b>Páginas: </b>
+			<?php
+				//muestro los distintos indices de las paginas
+				if ($total_paginas>1) {
+					for ($i=1; $i <=$total_paginas ; $i++) { 
+						if ($pagina==$i) {
+							//si muestro el indice del la pagina actual, no coloco enlace
+				?>
+					<b><?php echo $pagina." "; ?></b>
+				<?php
 						}
-					?>
-				</select>
-				<label>*<b>resumen</b></label>
-				<textarea name="rsde" rows="3" required><?php echo "$rsdn"; ?></textarea>
-				<label><b>Texto</b></label>
-				<textarea id="editor1" name="xxtde"><?php echo "$xtdn"; ?></textarea>
-				<script>
-					CKEDITOR.replace('xxtde');
-				</script>
-				<div id="txA"></div>
-				<input type="submit" value="Modificar" id="nvgaly" />
-			</form>
+						else{
+							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+				?>
+							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
+
+				<?php
+						}
+					}
+				}
+			?>
 		</article>
 	</section>
 	<footer>
@@ -149,15 +170,6 @@
 </body>
 </html>
 <?php
-			}
-			else{
-				echo "<script type='text/javascript'>";
-					echo "alerrt('Denuncia no existe o ha sido elminado');";
-					echo "var pagina='../denuncia';";
-					echo "document.location.href=pagina;";
-				echo "</script>";
-			}
-		}
 	}
 	else{
 		echo "<script type='text/javascript'>";

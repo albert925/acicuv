@@ -20,7 +20,7 @@
 			else{
 				$maAximo = 100204000;
 				if ($tamfotA<=$maAximo*1024) {
-					$ruta="imagenes/publicidad/".$fotAcosmodT;
+					$ruta="imagenes/carppu/".$fotAcosmodT;
 					if (file_exists($ruta)) {
 						echo "Una imagen tiene el mismo nombre";
 					}

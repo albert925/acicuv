@@ -191,7 +191,7 @@
 	}
 	else{
 		echo "<script type='text/javascript'>";
-			echo "var pagina='../erroradm.html';";
+			echo "var pagina='../../erroradm.html';";
 			echo "document.location.href=pagina;";
 		echo "</script>";
 	}
