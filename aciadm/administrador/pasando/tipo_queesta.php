@@ -10,7 +10,6 @@
 			$usad=$ad['user_adm'];
 			$tpad=$ad['tp_adm'];
 		}
-		$arrestad=["selecione","Activado","Desactivado"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
 	<meta name="description" content="Administrar publicidad" />
 	<meta name="keywords" content="todos las publicidad" />
-	<title>Adminsitrar pasando|Acicuv</title>
+	<title>Adminsitrar pasando submenu|Acicuv</title>
 	<link rel="icon" href="../../../imagenes/icono.png" />
 	<link rel="stylesheet" href="../../../css/normalize.css" />
 	<link rel="stylesheet" href="../../../css/iconos/style.css" />
@@ -65,41 +64,18 @@
 		</nav>
 	</article>
 	<nav id="mnB">
-		<a id="btB" href="#">Nueva articulo que está pasando</a>
+		<a href="../pasando">Ver articulos que está pasando</a>
 		<a href="tipo_queesta.php">Tipos o submenu de que está pasando</a>
 	</nav>
 	<section>
-		<h1>Que está pasando</h1>
-		<article id="cjB" class="tdscj">
-			<article id="automargen"> 
-				<form action="../../../new_pasando.php" method="post" enctype="multipart/form-data" id="glPu" class="columninput">
-					<label>*<b>Titulo</b></label>
-					<input type="text" id="ttpas" name="ttpas" required />
-					<label>*<b>Del tipo o submenu</b></label>
-					<select id="sltp" name="sltp">
-						<option value="0">Seleccione</option>
-						<?php
-							$Ttp="SELECT * from tp_ps order by nam_tp asc";
-							$sql_ttp=mysql_query($Ttp,$conexion) or die (mysql_error());
-							while ($up=mysql_fetch_array($sql_ttp)) {
-								$idtp=$up['id_tp'];
-								$nmtp=$up['nam_tp'];
-						?>
-						<option value="<?php echo $idtp ?>"><?php echo "$nmtp"; ?></option>
-						<?php
-							}
-						?>
-					</select>
-					<label for="igpas"><b>Imagen Visulización (resolución 1200 x 1080)</b></label>
-					<input type="file" id="igpas" name="igpas"	 />
-					<textarea id="editor1" name="xxpas"></textarea>
-					<script>
-						CKEDITOR.replace('xxpas');
-					</script>
-					<div id="txA"></div>
-					<input type="submit" value="Subir e ingresar" id="nvpasand" />
-				</form>
-			</article>
+		<h1>Tipos o submenus de que está pasando</h1>
+		<article id="automargen" style="padding-bottom:1em;"> 
+			<form action="3" method="post" class="columninput">
+				<label>*<b>Nuevo tipo</b></label>
+				<input type="text" id="nmtp" required />
+				<div id="txB"></div>
+				<input type="submit" value="Ingresar" id="nvtppas" />
+			</form>
 		</article>
 		<article id="automargen" class="flB">
 			<?php
@@ -113,26 +89,21 @@
 				else{
 					$inicio= ($pagina - 1)*$tamno_pagina;
 				}
-				$ssql="SELECT * from pasando order by id_ps desc";
+				$ssql="SELECT * from tp_ps order by id_tp desc";
 				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
 				$num_total_registros= mysql_num_rows($rs);
 				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from pasando order by id_ps desc limit $inicio, $tamno_pagina";
+				$gsql="SELECT * from tp_ps order by id_tp desc limit $inicio, $tamno_pagina";
 				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
 				while ($gh=mysql_fetch_array($impsql)) {
-					$idps=$gh['id_ps'];
-					$tpps=$gh['tp_id'];
-					$ttps=$gh['tit_ps'];
-					$rtps=$gh['rut_ps'];
-					$xtps=$gh['txt_ps'];
-					$feps=$gh['fe_ps'];
+					$idpt=$gh['id_tp'];
+					$nmtp=$gh['nam_tp'];
 			?>
-			<article>
-				<h2><?php echo "$ttps"; ?></h2>
-				<article class="columninput">
-					<a id="dsm" href="modifpasando.php?dt=<?php echo $idps ?>">Modificar</a>
-					<a class="doll" href="borr_pasando.php?br=<?php echo $idps ?>">Borrar</a>
-				</article>
+			<article class="columninput">
+				<input type="text" id="nmF_<?php echo $idpt ?>" value="<?php echo $nmtp ?>" />
+				<div id="txB_<?php echo $idpt ?>"></div>
+				<input type="submit" value="modificar" class="cambtip" data-id="<?php echo $idpt ?>" />
+				<a class="doll" href="borr_tipo.php?br=<?php echo $idpt ?>">Borrar</a>
 			</article>
 			<?php
 				}
@@ -154,7 +125,7 @@
 						else{
 							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
 				?>
-							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
+							<a href="tipo_queesta.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
 
 				<?php
 						}
