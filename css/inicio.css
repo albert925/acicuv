@@ -8,21 +8,6 @@
 		#bgBody ul li,#bgBody div{
 			background: #E4E4E4;
 		}
-.columnflx{
-	display: flex;
-	-webkit-justify-content: space-between;
-	-ms-justify-content: space-between;
-	justify-content: space-between;
-}
-	.columnflx .art1{
-		width: 50%;
-	}
-	.columnflx .art2{
-		width: 20%;
-	}
-	.columnflx .art3{
-		width: 25%;
-	}
 #idngal{
 	display: flex;
 	-webkit-justify-content: space-between;
@@ -65,6 +50,65 @@
 	background: #BFC0C2;
 	color: #005F00;
 	text-align: center;
+}
+	.cadclasif h3{
+		margin: 0;
+	}
+	.cadclasif i{
+		font-size: 12px;
+	}
+	.caddcolumn article,.cadclasif article{
+		padding: 0.5em 0;
+	}
+		.caddcolumn article h3{
+			margin: 0.25em 0;
+			text-align: center;
+		}
+		.caddcolumn article p{
+			margin: 0;
+			padding: 0;
+			text-align: justify;
+		}
+	.caddnun article{
+		border-bottom: 1px dotted #000;
+		margin-bottom: 1em;
+		padding: 0.5em 0;
+	}
+		.caddnun article a,.caddcolumn article a,.cadclasif article a{
+			font-size: 14px;
+			color: #004100;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+		.caddnun article a:hover,.caddnun article a:active,
+		.caddcolumn article a:hover,.caddcolumn article a:active,
+		.cadclasif article a:hover,.cadclasif article a:active{
+			text-decoration: underline;
+		}
+	.caddnun h3{
+		margin: 0;
+	}
+	.caddnun p{
+		padding: 0;
+		margin: 0 0 0.5em 0;
+	}
+.columnflx{
+	display: flex;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+	.columnflx .art1{
+		width: 50%;
+	}
+	.columnflx .art2{
+		width: 20%;
+	}
+	.columnflx .art3{
+		width: 25%;
+	}
+.pub1,.pub2{
+	margin-top: 1em;
 }
 .yap{
 	display: flex;

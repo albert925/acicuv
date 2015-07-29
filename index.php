@@ -1,5 +1,6 @@
 <?php
 	include 'config.php';
+	include 'fecha_format.php';
 	$desde=0;
 	$hasta=150;
 ?>
@@ -197,28 +198,153 @@
 						?>
 					</article>
 				</article>
-				<figure class="pub1 gpubli"></figure>
-				<figure class="pub2 gpubli"></figure>
+				<figure class="pub1 gpubli">
+					<?php
+						$igA="SELECT * from publicidad where po_pu='1' order by id_pu desc limit 1";
+						$sql_iga=mysql_query($igA,$conexion) or die (mysql_error());
+						while ($uua=mysql_fetch_array($sql_iga)) {
+							$idpua=$uua['id_pu'];
+							$rtpua=$uua['rt_pu'];
+							$lkpua=$uua['lk_pu'];
+						}
+					?>
+					<a href="<?php echo $lkpua ?>" target="_blank">
+						<img src="<?php echo $rtpua ?>" alt="ig<?php echo $idpua ?>" />
+					</a>
+				</figure>
+				<figure class="pub2 gpubli">
+					<?php
+						$igB="SELECT * from publicidad where po_pu='2' order by id_pu desc limit 1";
+						$sql_igb=mysql_query($igB,$conexion) or die (mysql_error());
+						while ($doa=mysql_fetch_array($sql_igb)) {
+							$idpub=$doa['id_pu'];
+							$rtpub=$doa['rt_pu'];
+							$lkpub=$doa['lk_pu'];
+						}
+					?>
+					<a href="<?php echo $lkpub ?>" target="_blank">
+						<img src="<?php echo $rtpub ?>" alt="ig<?php echo $idpub ?>" />
+					</a>
+				</figure>
 			</article>
 			<article class="art2">
 				<article class="deun">
 					<h2 id="hdosG">Opinión</h2>
-					<article class="caddnun"></article>
-					<a id="bonG" href="#">Mas +</a>
+					<article class="caddnun">
+						<?php
+							$Ttresden="SELECT * from denuncia where es_dn='1' order by id_dn desc limit 3";
+							$sql_den=mysql_query($Ttresden,$conexion) or die (mysql_error());
+							while ($dnd=mysql_fetch_array($sql_den)) {
+								$iddn=$dnd['id_dn'];
+								$ttdn=$dnd['tit_dn'];
+								$rsdn=$dnd['res_dn'];
+								$xtdn=$dnd['txt_dn'];
+								$fedn=$dnd['fe_dn'];
+						?>
+						<article>
+							<h3><?php echo "$ttdn"; ?></h3>
+							<p>
+								<?php echo "$rsdn"; ?>
+							</p>
+							<a href="quejas/indx.php?dn=<?php echo $iddn ?>">Leer más</a>
+						</article>
+						<?php
+							}
+						?>
+					</article>
+					<a id="bonG" href="quejas">Mas +</a>
 				</article>
 				<article class="editorial">
-					<h2 id="hdosG">Editorial</h2>
-					<article class="caddcolumn"></article>
-					<a id="bonG" href="#">Mas +</a>
+					<h2 id="hdosG">Articulos</h2>
+					<article class="caddcolumn">
+						<?php
+							$Tdart="SELECT * from articulos order by id_ar desc limit 4";
+							$slart=mysql_query($Tdart,$conexion) or die (mysql_error());
+							while ($arar=mysql_fetch_array($slart)) {
+								$idar=$arar['id_ar'];
+								$coar=$arar['co_id'];
+								$ttar=$arar['tit_ar'];
+								$rsar=$arar['res_ar'];
+								$xxar=$arar['txt_ar'];
+								$fear=$arar['fe_ar'];
+						?>
+						<article>
+							<h3><?php echo "$ttar"; ?></h3>
+							<p>
+								<?php echo "$rsar"; ?>
+							</p>
+							<a href="articulos/indx.php?nt=<?php echo $idar ?>">Leer más</a>
+						</article>
+						<?php
+							}
+						?>
+					</article>
+					<a id="bonG" href="articulos/index.php?cl=0">Mas +</a>
 				</article>
 			</article>
 			<article class="art3">
-				<figure class="pub3 gpubli"></figure>
-				<figure class="pub4 gpubli"></figure>
+				<figure class="pub3 gpubli">
+					<?php
+						$igCc="SELECT * from publicidad where po_pu='3' order by id_pu desc limit 1";
+						$sql_igc=mysql_query($igCc,$conexion) or die (mysql_error());
+						$numCC=mysql_num_rows($sql_igc);
+						if ($numCC>0) {
+							while ($tra=mysql_fetch_array($sql_igc)) {
+								$idpuc=$tra['id_pu'];
+								$rtpuc=$tra['rt_pu'];
+								$lkpuc=$tra['lk_pu'];
+							}
+						?>
+						<a href="<?php echo $lkpuc ?>" target="_blank">
+							<img src="<?php echo $rtpuc ?>" alt="ig<?php echo $idpuc ?>" />
+						</a>
+					<?php
+						}
+					?>
+				</figure>
+				<figure class="pub4 gpubli">
+					<?php
+						$igDd="SELECT * from publicidad where po_pu='4' order by id_pu desc limit 1";
+						$sql_igd=mysql_query($igDd,$conexion) or die (mysql_error());
+						$numDD=mysql_num_rows($sql_igd);
+						if ($numDD>0) {
+							while ($cua=mysql_fetch_array($sql_igd)) {
+								$idpud=$cua['id_pu'];
+								$rtpud=$cua['rt_pu'];
+								$lkpud=$cua['lk_pu'];
+							}
+						?>
+						<a href="<?php echo $lkpud ?>" target="_blank">
+							<img src="<?php echo $rtpud ?>" alt="ig<?php echo $idpud ?>" />
+						</a>
+					<?php
+						}
+					?>
+				</figure>
 				<article class="clasificados">
-					<h2 id="hodsoG">Clasificados</h2>
-					<article class="cadclasif"></article>
-					<a id="bonG" href="#">Mas +</a>
+					<h2 id="hdosG">Clasificados</h2>
+					<article class="cadclasif">
+						<?php
+							$tcla="SELECT * from clasificados order by id_cla desc limit 8";
+							$sqlcla=mysql_query($tcla,$conexion) or die (mysql_error());
+							while ($clv=mysql_fetch_array($sqlcla)) {
+								$idcl=$clv['id_cla'];
+								$ttcl=$clv['tit_cla'];
+								$txcl=$clv['txt_cla'];
+								$fecl=$clv['fe_cla'];
+						?>
+						<article>
+							<i><?php echo fechatraducearray($fecl); ?></i>
+							<h3>
+								<?php echo "$ttcl"; ?> 
+								<a href="clasificados/ind2x.php?cl=<?php echo $idcl ?>">Leer más</a>
+							</h3>
+						</article>
+						<?php
+							}
+						?>
+					</article>
+					<a id="bonG" href="clasificados">Mas +</a>
 				</article>
 			</article>
 		</article>
