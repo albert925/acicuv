@@ -1,5 +1,7 @@
 <?php
 	include 'config.php';
+	$desde=0;
+	$hasta=150;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -44,7 +46,17 @@
 				<li><a href="nosotros">Quienes somos</a></li>
 				<li class="submen" data-num="1"><a href="pasando">Que está pasando</a>
 					<ul class="children1">
-						<li><a href="#">Menu1</a></li>
+						<?php
+							$tdTPqs="SELECT * from tp_ps order by id_tp desc";
+							$sql_tp=mysql_query($tdTPqs,$conexion) or die (mysql_error());
+							while ($ttpp=mysql_fetch_array($sql_tp)) {
+								$idpts=$ttpp['id_tp'];
+								$nmtps=$ttpp['nam_tp'];
+						?>
+						<li><a href="pasando/ind2x.php?tp=<?php echo $idpts ?>"><?php echo "$nmtps"; ?></a></li>
+						<?php
+							}
+						?>
 					</ul>
 				</li>
 				<li><a href="sitios">Sitios de interés</a></li>
@@ -58,13 +70,32 @@
 	</article>
 	<article id="idngal" class="obautomarg">
 		<figure id="galery">
-			<div class="slider-wrapper theme-default">
+			<div class="slider-wrapper theme-default"><!--title="#caption1"-->
 				<div id="slider" class="nivoSlider">
-					<img src="imagenes/galery/do_1170_570.jpg" alt="imagen" title="#caption1" />
+					<?php
+						$slidgl="SELECT * from galeria order by id_gal desc";
+						$sql_slid=mysql_query($slidgl,$conexion) or die (mysql_error());
+						while ($ss=mysql_fetch_array($sql_slid)) {
+							$idgl=$ss['id_gal'];
+							$rtgl=$ss['rut_gal'];
+							$lkgl=$ss['lk_gal'];
+							if ($lkgl=="") {
+								$ea="#";
+							}
+							else{
+								$ea=$lkgl;
+							}
+					?>
+					<a href="<?php echo $ea ?>">
+						<img src="<?php echo $rtgl ?>" alt="imagen<?php echo $idgl ?>" />
+					</a>
+					<?php
+						}
+					?>
 				</div>
-				<div id="caption1" style="display:none;">
+				<!--div id="caption1" style="display:none;">
 					<span>Texto</span>
-				</div>
+				</div>-->
 			</div>
 		</figure>
 		<article id="indicadores">
@@ -98,31 +129,31 @@
 			<h2 id="hdosG">Sitios de Interés</h2>
 			<article id="todositios">
 				<article class="owl-carousel owl-theme owl-loaded">
+					<?php
+						$ttsit="SELECT * from sitios order by id_st desc limit 30";
+						$sql_sit=mysql_query($ttsit,$conexion) or die (mysql_error());
+						while ($tss=mysql_fetch_array($sql_sit)) {
+							$idst=$tss['id_st'];
+							$nmst=$tss['nam_st'];
+							$rtst=$tss['rt_st'];
+							$lkst=$tss['lk_st'];
+							if ($lkst=="") {
+								$laa="#";
+							}
+							else{
+								$laa=$lkst;
+							}
+					?>
 					<div class="item">
 						<figure>
-							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
+							<a href="<?php echo $laa ?>" target="_blank">
+								<img src="<?php echo $rtst ?>" alt="<?php echo $nmst ?>" />
+							</a>
 						</figure>
 					</div>
-					<div class="item">
-						<figure>
-							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
-						</figure>
-					</div>
-					<div class="item">
-						<figure>
-							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
-						</figure>
-					</div>
-					<div class="item">
-						<figure>
-							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
-						</figure>
-					</div>
-					<div class="item">
-						<figure>
-							<img src="imagenes/sitios/fondo_1400_870_2.jpg" alt="fondo" />
-						</figure>
-					</div>
+					<?php
+						}
+					?>
 				</article>
 			</article>
 		</article>
@@ -131,9 +162,40 @@
 				<article class="pasan">
 					<div id="htresG">
 						<h2>Que está pasando</h2>
-						<a id="bonG" href="#">Mas +</a>
+						<a id="bonG" href="pasando">Mas +</a>
 					</div>
-					<article></article>
+					<article class="yap">
+						<?php
+							$Tdpass="SELECT * from pasando order by id_ps desc limit 6";
+							$sql_pass=mysql_query($Tdpass,$conexion) or die (mysql_error());
+							while ($sps=mysql_fetch_array($sql_pass)) {
+								$idps=$sps['id_ps'];
+								$tpps=$sps['tp_id'];
+								$ttps=$sps['tit_ps'];
+								$rtps=$sps['rut_ps'];
+								$xtps=$sps['txt_ps'];
+								$feps=$sps['fe_ps'];
+						?>
+						<article>
+							<?php
+								if ($rtps!="") {
+							?>
+							<figure>
+								<img src="<?php echo $rtps ?>" />
+							</figure>
+							<?php
+								}
+							?>
+							<h3><?php echo "$ttps"; ?></h3>
+							<div>
+								<?php echo substr($xtps,$desde,$hasta)."..."; ?>
+							</div>
+							<a href="pasando/ind3x.php?nt=<?php echo $idps ?>">Leer más</a>
+						</article>
+						<?php
+							}
+						?>
+					</article>
 				</article>
 				<figure class="pub1 gpubli"></figure>
 				<figure class="pub2 gpubli"></figure>

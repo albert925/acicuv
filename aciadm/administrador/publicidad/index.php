@@ -71,6 +71,16 @@
 		<article id="cjA" class="tdscj">
 			<article id="automargen"> 
 				<form action="#" method="post" enctype="multipart/form-data" id="glPu" class="columninput">
+					<label>*<b>Posición</b></label>
+					<select id="nups" name="nups">
+						<?php
+							for ($ios=1; $ios <=4 ; $ios++) { 
+						?>
+						<option value="<?php echo $ios ?>"><?php echo "$ios"; ?></option>
+						<?php
+							}
+						?>
+					</select>
 					<label>*<b>Titulo</b></label>
 					<input type="text" id="ttpu" name="ttpu" required />
 					<label for="puig">*<b>Nuevo Imagen (resolución 1200 x 1080)</b></label>

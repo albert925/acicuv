@@ -3,6 +3,7 @@
 	if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		$titpu=$_POST['ttpu'];
 		$lkpu=$_POST['lkpu'];
+		$posi=$_POST['nups'];
 		//-------------------------------------------
 		$fotAcosmodT=$_FILES['puig']['name'];
 		$tipfotA=$_FILES['puig']['type'];
@@ -36,7 +37,7 @@
 						else{
 							$subiendo=@move_uploaded_file($almfotA, $ruta);
 							if ($subiendo) {
-								$ddf="INSERT into publicidad(nam_pu,rt_pu,lk_pu) values('$titpu','$ruta','$lkpu')";
+								$ddf="INSERT into publicidad(nam_pu,rt_pu,lk_pu,po_pu) values('$titpu','$ruta','$lkpu','$posi')";
 								mysql_query($ddf,$conexion) or die (mysql_error());
 								echo "5";
 							}

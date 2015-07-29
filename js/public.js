@@ -27,40 +27,47 @@ function es_imagen (tipederf) {
 function nuevo_publicidad () {
 	var ppa=$("#ttpu").val();
 	var ppc=$("#lkpu").val();
+	var ppd=$("#nups").val();
 	var ppb=$("#puig")[0].files[0];
 	var nameppb=ppb.name;
 	var exteppb=nameppb.substring(nameppb.lastIndexOf('.')+1);
 	var tamppb=ppb.size;
 	var tipoppb=ppb.type;
-	if (ppa=="") {
-		$("#txA").css(mal).text("Ingrese el titulo");
+	if (ppd=="0" || ppd=="") {
+		$("#txA").css(mal).text("Selecione la posición");
 		return false;
 	}
 	else{
-		if (!es_imagen(exteppb)) {
-			$("#txA").css(mal).text("Tpo de imagen no permitido");
+		if (ppa=="") {
+			$("#txA").css(mal).text("Ingrese el titulo");
 			return false;
 		}
 		else{
-			$("#txA").css(normal).text("");
-			var formu=new FormData($("#glPu")[0]);
-			$.ajax({
-				url: '../../../new_publicidad.php',
-				type: 'POST',
-				data: formu,
-				cache: false,
-				contentType: false,
-				processData: false,
-				beforeSend:function () {
-					$("#txA").prepend("<center><img src='../../../imagenes/loadingb.gif' alt='loading' style='width:20px;' /></center>");
-				},
-				success:reulimg,
-				error:function () {
-					$("#txA").css(mal).text("Ocurrió un error");
-					$("#txA").fadeIn();$("#txA").fadeOut(3000);
-				}
-			});
-			return false;
+			if (!es_imagen(exteppb)) {
+				$("#txA").css(mal).text("Tpo de imagen no permitido");
+				return false;
+			}
+			else{
+				$("#txA").css(normal).text("");
+				var formu=new FormData($("#glPu")[0]);
+				$.ajax({
+					url: '../../../new_publicidad.php',
+					type: 'POST',
+					data: formu,
+					cache: false,
+					contentType: false,
+					processData: false,
+					beforeSend:function () {
+						$("#txA").prepend("<center><img src='../../../imagenes/loadingb.gif' alt='loading' style='width:20px;' /></center>");
+					},
+					success:reulimg,
+					error:function () {
+						$("#txA").css(mal).text("Ocurrió un error");
+						$("#txA").fadeIn();$("#txA").fadeOut(3000);
+					}
+				});
+				return false;
+			}
 		}
 	}
 }
