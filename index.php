@@ -202,29 +202,39 @@
 					<?php
 						$igA="SELECT * from publicidad where po_pu='1' order by id_pu desc limit 1";
 						$sql_iga=mysql_query($igA,$conexion) or die (mysql_error());
-						while ($uua=mysql_fetch_array($sql_iga)) {
-							$idpua=$uua['id_pu'];
-							$rtpua=$uua['rt_pu'];
-							$lkpua=$uua['lk_pu'];
+						$numAA=mysql_num_rows($sql_iga);
+						if ($numAA>0) {
+							while ($uua=mysql_fetch_array($sql_iga)) {
+								$idpua=$uua['id_pu'];
+								$rtpua=$uua['rt_pu'];
+								$lkpua=$uua['lk_pu'];
+							}
+						?>
+						<a href="<?php echo $lkpua ?>" target="_blank">
+							<img src="<?php echo $rtpua ?>" alt="ig<?php echo $idpua ?>" />
+						</a>
+					<?php
 						}
 					?>
-					<a href="<?php echo $lkpua ?>" target="_blank">
-						<img src="<?php echo $rtpua ?>" alt="ig<?php echo $idpua ?>" />
-					</a>
 				</figure>
 				<figure class="pub2 gpubli">
 					<?php
 						$igB="SELECT * from publicidad where po_pu='2' order by id_pu desc limit 1";
 						$sql_igb=mysql_query($igB,$conexion) or die (mysql_error());
-						while ($doa=mysql_fetch_array($sql_igb)) {
-							$idpub=$doa['id_pu'];
-							$rtpub=$doa['rt_pu'];
-							$lkpub=$doa['lk_pu'];
+						$numBB=mysql_num_rows($sql_igb);
+						if ($numBB>0) {
+							while ($doa=mysql_fetch_array($sql_igb)) {
+								$idpub=$doa['id_pu'];
+								$rtpub=$doa['rt_pu'];
+								$lkpub=$doa['lk_pu'];
+							}
+						?>
+						<a href="<?php echo $lkpub ?>" target="_blank">
+							<img src="<?php echo $rtpub ?>" alt="ig<?php echo $idpub ?>" />
+						</a>
+					<?php
 						}
 					?>
-					<a href="<?php echo $lkpub ?>" target="_blank">
-						<img src="<?php echo $rtpub ?>" alt="ig<?php echo $idpub ?>" />
-					</a>
 				</figure>
 			</article>
 			<article class="art2">
