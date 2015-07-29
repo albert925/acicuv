@@ -33,7 +33,7 @@
 				$ingresar="INSERT into pasando(tp_id,tit_ps,txt_ps,fe_ps) values($b,'$a','$c','$hoy')";
 				mysql_query($ingresar,$conexion) or die (mysql_error());
 				echo "<script type='text/javascript'>";
-					echo "alertr('ndato ingresado');";
+					echo "alert('dato ingresado');";
 					echo "var pagina='aciadm/administrador/pasando/';";
 					echo "document.location.href=pagina;";
 				echo "</script>";
