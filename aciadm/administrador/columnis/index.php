@@ -48,7 +48,7 @@
 				<li><a href="../denuncia">Quejas o denuncias</a></li>
 				<li><a href="../publicidad">Publicidad</a></li>
 				<li><a href="../pasando">Que está pasando</a></li>
-				<li class="sill" class="submen" data-num="1"><a href="../columnis">Columnistas</a>
+				<li class="submen" data-num="1"><a class="sill" href="../columnis">Columnistas</a>
 					<ul class="children1">
 						<li><a href="../columnis/articulo.php">Articulos</a></li>
 					</ul>

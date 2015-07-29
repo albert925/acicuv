@@ -10,6 +10,24 @@
 			$usad=$ad['user_adm'];
 			$tpad=$ad['tp_adm'];
 		}
+		$idR=$_GET['dt'];
+		if ($idR=="") {
+			echo "<script type='text/javascript'>";
+				echo "alert('id de clasificados no disponible');";
+				echo "var pagina='../clasificados';";
+				echo "document.location.href=pagina;";
+			echo "</script>";
+		}
+		else{
+			$datos="SELECT * from clasificados where id_cla=$idR";
+			$sql_datos=mysql_query($datos,$conexion) or die (mysql_error());
+			$numdatos=mysql_num_rows($sql_datos);
+			if ($numdatos>0) {
+				while ($dt=mysql_fetch_array($sql_datos)) {
+					$ttcl=$dt['tit_cla'];
+					$txcl=$dt['txt_cla'];
+					$fecl=$dt['fe_cla'];
+				}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +36,7 @@
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
 	<meta name="description" content="Administrar publicidad" />
 	<meta name="keywords" content="todos las publicidad" />
-	<title>Adminsitrar columnistas|Acicuv</title>
+	<title><?php echo "$ttcl"; ?>|Acicuv</title>
 	<link rel="icon" href="../../../imagenes/icono.png" />
 	<link rel="stylesheet" href="../../../css/normalize.css" />
 	<link rel="stylesheet" href="../../../css/iconos/style.css" />
@@ -27,7 +45,6 @@
 	<script src="../../../js/jquery_2_1_1.js"></script>
 	<script src="../../../js/scrippag.js"></script>
 	<script src="../../../js/scadmin.js"></script>
-	<script src="../../../js/columnis.js"></script>
 	<script src="../../../ckeditor/ckeditor.js"></script>
 </head>
 <body>
@@ -48,12 +65,12 @@
 				<li><a href="../denuncia">Quejas o denuncias</a></li>
 				<li><a href="../publicidad">Publicidad</a></li>
 				<li><a href="../pasando">Que está pasando</a></li>
-				<li class="submen" data-num="1"><a class="sill" href="../columnis">Columnistas</a>
+				<li class="submen" data-num="1"><a href="../columnis">Columnistas</a>
 					<ul class="children1">
-						<li><a class="sill" href="../columnis/articulo.php">Articulos</a></li>
+						<li><a href="../columnis/articulo.php">Articulos</a></li>
 					</ul>
 				</li>
-				<li><a href="../clasificados">Clasificados</a></li>
+				<li><a class="sill" href="../clasificados">Clasificados</a></li>
 				<li class="submen" data-num="2">
 					<a href="../"><?php echo "$usad"; ?></a>
 					<ul class="children2">
@@ -64,103 +81,23 @@
 		</nav>
 	</article>
 	<nav id="mnB">
-		<a href="../columnis">Columnistas</a>
-		<a id="btB" href="articulo.php">Nueva Articulo</a>
+		<a href="../clasificados">Ver Clasificados</a>
 	</nav>
 	<section>
-		<h1>Articulos</h1>
-		<article id="cjB" class="tdscj">
-			<article id="automargen"> 
-				<form action="new_articulo.php" method="post" class="columninput">
-					<label>*<b>Del comunista</b></label>
-					<select id="slcm" name="slcm">
-						<option value="0">Selecione</option>
-						<?php
-							$colm="SELECT * from columnistas order by id_co desc";
-							$sql_colm=mysql_query($colm,$conexion) or die (mysql_error());
-							while ($clm=mysql_fetch_array($sql_colm)) {
-								$idcl=$clm['id_co'];
-								$nmcl=$clm['nam_co'];
-						?>
-						<option value="<?php echo $idcl ?>"><?php echo "$nmcl"; ?></option>
-						<?php
-							}
-						?>
-					</select>
-					<label>*<b>titulo</b></label>
-					<input type="text" id="nmar" name="nmar" required />
-					<label><b>Resumen</b></label>
-					<textarea rows="4" name="rsar"></textarea>
-					<label><b>Texto</b></label>
-					<textarea id="editor1" name="xxar"></textarea>
-					<script>
-						CKEDITOR.replace('xxar');
-					</script>
-					<div id="txA"></div>
-					<input type="submit" value="Ingresar" id="nvartc" />
-				</form>
-			</article>
-		</article>
-		<article id="automargen" class="flB">
-			<?php
-				error_reporting(E_ALL ^ E_NOTICE);
-				$tamno_pagina=15;
-				$pagina= $_GET['pagina'];
-				if (!$pagina) {
-					$inicio=0;
-					$pagina=1;
-				}
-				else{
-					$inicio= ($pagina - 1)*$tamno_pagina;
-				}
-				$ssql="SELECT * from articulos order by id_ar desc";
-				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
-				$num_total_registros= mysql_num_rows($rs);
-				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from articulos order by id_ar desc limit $inicio, $tamno_pagina";
-				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
-				while ($gh=mysql_fetch_array($impsql)) {
-					$idar=$gh['id_ar'];
-					$coar=$gh['co_id'];
-					$ttar=$gh['tit_ar'];
-					$rsar=$gh['res_ar'];
-					$xxar=$gh['txt_ar'];
-					$fear=$gh['fe_ar'];
-			?>
-			<article>
-				<h2><?php echo "$ttar"; ?></h2>
-				<article class="columninput">
-					<a id="dsm" href="modifarticulo.php?dt=<?php echo $idar ?>">Modificar</a>
-					<a class="doll" href="borr_articulo.php?br=<?php echo $idar ?>">Borrar</a>
-				</article>
-			</article>
-			<?php
-				}
-			?>
-		</article>
-		<article id="automargen">
-			<br />
-			<b>Páginas: </b>
-			<?php
-				//muestro los distintos indices de las paginas
-				if ($total_paginas>1) {
-					for ($i=1; $i <=$total_paginas ; $i++) { 
-						if ($pagina==$i) {
-							//si muestro el indice del la pagina actual, no coloco enlace
-				?>
-					<b><?php echo $pagina." "; ?></b>
-				<?php
-						}
-						else{
-							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
-				?>
-							<a href="articulo.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
-
-				<?php
-						}
-					}
-				}
-			?>
+		<h1><?php echo "$ttcl"; ?></h1>
+		<article id="automargen"> 
+			<form action="modifc_clasificado.php" method="post" class="columninput">
+				<input type="text" id="ida" name="ida" value="<?php echo $idR ?>" required style="display:none;" />
+				<label>*<b>titulo</b></label>
+				<input type="text" id="nmcla" name="nmcla" value="<?php echo $ttcl ?>" required />
+				<label><b>Texto</b></label>
+				<textarea id="editor1" name="xxcla"><?php echo "$txcl"; ?></textarea>
+				<script>
+					CKEDITOR.replace('xxcla');
+				</script>
+				<div id="txA"></div>
+				<input type="submit" value="Modificar" id="nvartc" />
+			</form>
 		</article>
 	</section>
 	<footer>
@@ -188,6 +125,15 @@
 </body>
 </html>
 <?php
+			}
+			else{
+				echo "<script type='text/javascript'>";
+					echo "alert('clasificado eliminado o no existe');";
+					echo "var pagina='../clasificados';";
+					echo "document.location.href=pagina;";
+				echo "</script>";
+			}
+		}
 	}
 	else{
 		echo "<script type='text/javascript'>";

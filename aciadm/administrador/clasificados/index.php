@@ -18,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
 	<meta name="description" content="Administrar publicidad" />
 	<meta name="keywords" content="todos las publicidad" />
-	<title>Adminsitrar columnistas|Acicuv</title>
+	<title>Adminsitrar clasificados|Acicuv</title>
 	<link rel="icon" href="../../../imagenes/icono.png" />
 	<link rel="stylesheet" href="../../../css/normalize.css" />
 	<link rel="stylesheet" href="../../../css/iconos/style.css" />
@@ -27,7 +27,6 @@
 	<script src="../../../js/jquery_2_1_1.js"></script>
 	<script src="../../../js/scrippag.js"></script>
 	<script src="../../../js/scadmin.js"></script>
-	<script src="../../../js/columnis.js"></script>
 	<script src="../../../ckeditor/ckeditor.js"></script>
 </head>
 <body>
@@ -48,12 +47,12 @@
 				<li><a href="../denuncia">Quejas o denuncias</a></li>
 				<li><a href="../publicidad">Publicidad</a></li>
 				<li><a href="../pasando">Que está pasando</a></li>
-				<li class="submen" data-num="1"><a class="sill" href="../columnis">Columnistas</a>
+				<li class="submen" data-num="1"><a href="../columnis">Columnistas</a>
 					<ul class="children1">
-						<li><a class="sill" href="../columnis/articulo.php">Articulos</a></li>
+						<li><a href="../columnis/articulo.php">Articulos</a></li>
 					</ul>
 				</li>
-				<li><a href="../clasificados">Clasificados</a></li>
+				<li><a class="sill" href="../clasificados">Clasificados</a></li>
 				<li class="submen" data-num="2">
 					<a href="../"><?php echo "$usad"; ?></a>
 					<ul class="children2">
@@ -64,37 +63,19 @@
 		</nav>
 	</article>
 	<nav id="mnB">
-		<a href="../columnis">Columnistas</a>
-		<a id="btB" href="articulo.php">Nueva Articulo</a>
+		<a id="btB" href="#">Nueva Clasificado</a>
 	</nav>
 	<section>
-		<h1>Articulos</h1>
+		<h1>Clasificados</h1>
 		<article id="cjB" class="tdscj">
 			<article id="automargen"> 
-				<form action="new_articulo.php" method="post" class="columninput">
-					<label>*<b>Del comunista</b></label>
-					<select id="slcm" name="slcm">
-						<option value="0">Selecione</option>
-						<?php
-							$colm="SELECT * from columnistas order by id_co desc";
-							$sql_colm=mysql_query($colm,$conexion) or die (mysql_error());
-							while ($clm=mysql_fetch_array($sql_colm)) {
-								$idcl=$clm['id_co'];
-								$nmcl=$clm['nam_co'];
-						?>
-						<option value="<?php echo $idcl ?>"><?php echo "$nmcl"; ?></option>
-						<?php
-							}
-						?>
-					</select>
+				<form action="new_clasificado.php" method="post" class="columninput">
 					<label>*<b>titulo</b></label>
-					<input type="text" id="nmar" name="nmar" required />
-					<label><b>Resumen</b></label>
-					<textarea rows="4" name="rsar"></textarea>
+					<input type="text" id="nmcla" name="nmcla" required />
 					<label><b>Texto</b></label>
-					<textarea id="editor1" name="xxar"></textarea>
+					<textarea id="editor1" name="xxcla"></textarea>
 					<script>
-						CKEDITOR.replace('xxar');
+						CKEDITOR.replace('xxcla');
 					</script>
 					<div id="txA"></div>
 					<input type="submit" value="Ingresar" id="nvartc" />
@@ -113,25 +94,23 @@
 				else{
 					$inicio= ($pagina - 1)*$tamno_pagina;
 				}
-				$ssql="SELECT * from articulos order by id_ar desc";
+				$ssql="SELECT * from clasificados order by id_cla desc";
 				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
 				$num_total_registros= mysql_num_rows($rs);
 				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from articulos order by id_ar desc limit $inicio, $tamno_pagina";
+				$gsql="SELECT * from clasificados order by id_cla desc limit $inicio, $tamno_pagina";
 				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
 				while ($gh=mysql_fetch_array($impsql)) {
-					$idar=$gh['id_ar'];
-					$coar=$gh['co_id'];
-					$ttar=$gh['tit_ar'];
-					$rsar=$gh['res_ar'];
-					$xxar=$gh['txt_ar'];
-					$fear=$gh['fe_ar'];
+					$idcl=$gh['id_cla'];
+					$ttcl=$gh['tit_cla'];
+					$txcl=$gh['txt_cla'];
+					$fecl=$gh['fe_cla'];
 			?>
 			<article>
-				<h2><?php echo "$ttar"; ?></h2>
+				<h2><?php echo "$ttcl"; ?></h2>
 				<article class="columninput">
-					<a id="dsm" href="modifarticulo.php?dt=<?php echo $idar ?>">Modificar</a>
-					<a class="doll" href="borr_articulo.php?br=<?php echo $idar ?>">Borrar</a>
+					<a id="dsm" href="modifclasificado.php?dt=<?php echo $idcl ?>">Modificar</a>
+					<a class="doll" href="borr_clasificado.php?br=<?php echo $idcl ?>">Borrar</a>
 				</article>
 			</article>
 			<?php
@@ -154,7 +133,7 @@
 						else{
 							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
 				?>
-							<a href="articulo.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
+							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
 
 				<?php
 						}
