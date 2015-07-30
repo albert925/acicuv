@@ -1,8 +1,8 @@
 i{
 	font-size: 12px;
-	padding-left: 1em;
+	font-style: italic;
 }
-.fldenun{
+.pasnnt{
 	display: flex;
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
@@ -10,28 +10,36 @@ i{
 	-ms-justify-content: space-around;
 	-webkit-justify-content: space-around;
 	justify-content: space-around;
+	margin-bottom: 1em;
 }
-	.fldenun .cadant{
-		border-bottom: 1px dotted #000;
+	.pasnnt article{
 		margin-bottom: 1em;
-		padding: 0.5em 0;
+		text-align: justify;
+		width: 25%;
 	}
-		.fldenun .cadant a{
+		.pasnnt article a{
 			font-size: 14px;
 			color: #004100;
 			text-decoration: none;
 			text-transform: uppercase;
 		}
-		.fldenun .cadant a:hover,.fldenun .cadant a:active{
+		.pasnnt article h3{
+			margin: 0.5em 0;
+			text-align: center;
+		}
+		.pasnnt article a:hover,.pasnnt article a:active{
 			text-decoration: underline;
 		}
+.txG{
+	padding: 0 1em;
+}
 @media screen and (max-width: 900px){
-	.fldenun{
+	.pasnnt{
 		-webkit-flex-direction: column;
 		-ms-flex-direction: column;
 		flex-direction: column;
 	}
-		.fldenun .cadant{
+		.pasnnt article{
 			margin: 1em auto;
 			width: 90%;
 		}
