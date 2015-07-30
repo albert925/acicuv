@@ -25,11 +25,28 @@
 	<link rel="stylesheet" href="css/owl_theme_min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/inicio.css" />
+	<link rel="stylesheet" href="css/popu_c.css" />
 	<script src="js/jquery_2_1_1.js"></script>
 	<script src="js/scrippag.js"></script>
 	<script src="js/owl_carousel_min.js"></script>
 </head>
 <body>
+	<aside class="popupContact">
+		<div class="popupContactClose"></div>
+		<article id="popcont">
+			<h2>Nueva Denuncia</h2>
+			<form action="#" method="post" class="columninput">
+				<label>*<b>Nombres y Apellidos</b></label>
+				<input type="text" id="nmevdn" required />
+				<label>*<b>Correo</b></label>
+				<input type="email" id="corevdn" required />
+				<label>*<b>Mensaje</b></label>
+				<textarea rows="4" id="xxttevdn"></textarea>
+				<div id="txDn"></div>
+				<input type="submit" value="Enviar" id="nvmsms" />
+			</form>
+		</article>
+	</aside>
 	<header id="automargen">
 		<article id="redes">
 			<a href="" target="_blank"><span class="icon-facebook"></span></a>
@@ -42,7 +59,7 @@
 		<div id="mn_mv"><span class="icon-menu"></span></div>
 		<nav id="mnP">
 			<ul>
-				<li><a href="">Inicio</a></li>
+				<li><a class="sill" href="">Inicio</a></li>
 				<li><a href="quejas">Quejas</a></li>
 				<li><a href="nosotros">Quienes somos</a></li>
 				<li class="submen" data-num="1"><a href="pasando">Que está pasando</a>
@@ -434,5 +451,6 @@
 			});
 		}
 	</script>
+	<script src="js/popup_b.js"></script>
 </body>
 </html>
