@@ -40,6 +40,8 @@
 				<input type="text" id="nmevdn" required />
 				<label>*<b>Correo</b></label>
 				<input type="email" id="corevdn" required />
+				<label>*<b>Asunto</b></label>
+				<input type="text" id="ausevdn" required />
 				<label>*<b>Mensaje</b></label>
 				<textarea rows="4" id="xxttevdn"></textarea>
 				<div id="txDn"></div>
