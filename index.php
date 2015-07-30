@@ -302,7 +302,7 @@
 							<p>
 								<?php echo "$rsar"; ?>
 							</p>
-							<a href="articulos/indx.php?nt=<?php echo $idar ?>">Leer más</a>
+							<a href="articulos/ind2x.php?nt=<?php echo $idar ?>&cl=0">Leer más</a>
 						</article>
 						<?php
 							}

@@ -2,7 +2,7 @@ i{
 	font-size: 12px;
 	font-style: italic;
 }
-.flesitios{
+.flesitios,.flGa{
 	display: flex;
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
@@ -21,6 +21,24 @@ i{
 			margin: 0.5em 0;
 			text-align: center;
 		}
+	.flGa .flaas{
+		display: flex;
+		-webkit-justify-content: space-between;
+		-ms-justify-content: space-between;
+		justify-content: space-between;
+		margin: 1em 0;
+	}
+		.flGa .flaas a{
+			background: #005A00;
+			color: #fff;
+			padding: 0 0.5em;
+			text-decoration: none;
+		}
+		.flGa .flaas a:hover,.flGa .flaas a:active{background: #002300;}
+	.flGa .mincol{
+		text-align: justify;
+		width: 25%;
+	}
 .imflxds{
 	display: flex;
 	-ms-justify-content: space-around;
@@ -49,12 +67,12 @@ i{
 	padding: 0 1em;
 }
 @media screen and (max-width: 900px){
-	.flesitios,.imflxds{
+	.flesitios,.imflxds,.flGa{
 		-webkit-flex-direction: column;
 		-ms-flex-direction: column;
 		flex-direction: column;
 	}
-		.flesitios figure,.imflxds figure,.imflxds #texdesc{
+		.flesitios figure,.imflxds figure,.imflxds #texdesc,.flGa .mincol{
 			margin: 1em auto;
 			width: 90%;
 		}
