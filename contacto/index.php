@@ -9,16 +9,17 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
-	<meta name="description" content="Todos los clasificados" />
+	<meta name="description" content="Contacto de la empresa" />
 	<meta name="keywords" content="Finaciero, prestacion de servicios" />
-	<title>Clasificados|Acicuv</title>
+	<title>Contacto|Acicuv</title>
 	<link rel="icon" href="../imagenes/icono.png" />
 	<link rel="stylesheet" href="../css/normalize.css" />
 	<link rel="stylesheet" href="../css/iconos/style.css" />
 	<link rel="stylesheet" href="../css/style.css" />
-	<link rel="stylesheet" href="../css/sitinres.css" />
+	<link rel="stylesheet" href="../css/contacto.css" />
 	<script src="../js/jquery_2_1_1.js"></script>
 	<script src="../js/scrippag.js"></script>
+	<script src="../js/contact.js"></script>
 </head>
 <body>
 	<header id="automargen">
@@ -53,70 +54,35 @@
 				</li>
 				<li><a href="../sitios">Sitios de interés</a></li>
 				<li><a href="../columnistas">Columnistas</a></li>
-				<li><a href="../contacto">Contáctenos</a></li>
+				<li><a class="sill" href="../contacto">Contáctenos</a></li>
 			</ul>
 		</nav>
 	</article>
 	<section>
-		<h1>Calsificados</h1>
-		<article id="automargen" class="cadclasif">
-			<?php
-				error_reporting(E_ALL ^ E_NOTICE);
-				$tamno_pagina=15;
-				$pagina= $_GET['pagina'];
-				if (!$pagina) {
-					$inicio=0;
-					$pagina=1;
-				}
-				else{
-					$inicio= ($pagina - 1)*$tamno_pagina;
-				}
-				$ssql="SELECT * from clasificados order by id_cla desc";
-				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
-				$num_total_registros= mysql_num_rows($rs);
-				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from clasificados order by id_cla desc limit $inicio, $tamno_pagina";
-				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
-				while ($clv=mysql_fetch_array($impsql)) {
-					$idcl=$clv['id_cla'];
-					$ttcl=$clv['tit_cla'];
-					$txcl=$clv['txt_cla'];
-					$fecl=$clv['fe_cla'];
-			?>
+		<h1>Contacto</h1>
+		<article id="automargen" class="flccont">
 			<article>
-				<i><?php echo fechatraducearray($fecl); ?></i>
-				<h3>
-					<?php echo "$ttcl"; ?> 
-					<a href="ind2x.php?cl=<?php echo $idcl ?>">Leer más</a>
-				</h3>
+				<h2 id="hdosG">Datos</h2>
+				<div>304 591 6717</div>
+				<div>acicuv@gmail.com</div>
+				<div>av 6 #10-20 Ofic. 10-03 Ed. Dacach</div>
+				<div>Cúcuta-Colombia</div>
 			</article>
-			<?php
-				}
-			?>
-		</article>
-		<article id="automargen">
-			<br />
-			<b>Páginas: </b>
-			<?php
-				//muestro los distintos indices de las paginas
-				if ($total_paginas>1) {
-					for ($i=1; $i <=$total_paginas ; $i++) { 
-						if ($pagina==$i) {
-							//si muestro el indice del la pagina actual, no coloco enlace
-				?>
-					<b><?php echo $pagina." "; ?></b>
-				<?php
-						}
-						else{
-							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
-				?>
-							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
-
-				<?php
-						}
-					}
-				}
-			?>
+			<article>
+				<h2 id="hdosG">Mensaje</h2>
+				<form action="#" method="post" class="columninput">
+					<label>*<b>Nombres</b></label>
+					<input type="text" id="nmsj" required />
+					<label>*<b>Correo</b></label>
+					<input type="email" id="corsj" required />
+					<label>*<b>Teléfono</b></label>
+					<input type="tel" id="tlsj" required />
+					<label>*<b>Mensaje</b></label>
+					<textarea rows="4" id="xxsj"></textarea>
+					<div id="jxA"></div>
+					<input type="submit" value="Enviar" id="nvxjs" />
+				</form>
+			</article>
 		</article>
 	</section>
 	<footer>

@@ -3,15 +3,33 @@
 	include '../fecha_format.php';
 	$desde=0;
 	$hasta=150;
+	$idR=$_GET['cl'];
+	if ($idR=="") {
+		echo "<script type='text/javascript'>";
+			echo "alert('id clasificado no disponible');";
+			echo "var pagina='../clasificados';";
+			echo "document.location.href=pagina;";
+		echo "</script>";
+	}
+	else{
+		$datos="SELECT * from clasificados where id_cla=$idR";
+		$sql_datos=mysql_query($datos,$conexion) or die (mysql_error());
+		$numero=mysql_num_rows($sql_datos);
+		if ($numero>0) {
+			while ($dt=mysql_fetch_array($sql_datos)) {
+				$ttcl=$dt['tit_cla'];
+				$txcl=$dt['txt_cla'];
+				$fecl=$dt['fe_cla'];;
+			}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, maximun-scale=1" />
-	<meta name="description" content="Todos los clasificados" />
+	<meta name="description" content="<?php echo $ttcl ?>" />
 	<meta name="keywords" content="Finaciero, prestacion de servicios" />
-	<title>Clasificados|Acicuv</title>
+	<title><?php echo "$ttcl"; ?>|Acicuv</title>
 	<link rel="icon" href="../imagenes/icono.png" />
 	<link rel="stylesheet" href="../css/normalize.css" />
 	<link rel="stylesheet" href="../css/iconos/style.css" />
@@ -58,65 +76,9 @@
 		</nav>
 	</article>
 	<section>
-		<h1>Calsificados</h1>
-		<article id="automargen" class="cadclasif">
-			<?php
-				error_reporting(E_ALL ^ E_NOTICE);
-				$tamno_pagina=15;
-				$pagina= $_GET['pagina'];
-				if (!$pagina) {
-					$inicio=0;
-					$pagina=1;
-				}
-				else{
-					$inicio= ($pagina - 1)*$tamno_pagina;
-				}
-				$ssql="SELECT * from clasificados order by id_cla desc";
-				$rs=mysql_query($ssql,$conexion) or die (mysql_error());
-				$num_total_registros= mysql_num_rows($rs);
-				$total_paginas= ceil($num_total_registros / $tamno_pagina);
-				$gsql="SELECT * from clasificados order by id_cla desc limit $inicio, $tamno_pagina";
-				$impsql=mysql_query($gsql,$conexion) or die (mysql_error());
-				while ($clv=mysql_fetch_array($impsql)) {
-					$idcl=$clv['id_cla'];
-					$ttcl=$clv['tit_cla'];
-					$txcl=$clv['txt_cla'];
-					$fecl=$clv['fe_cla'];
-			?>
-			<article>
-				<i><?php echo fechatraducearray($fecl); ?></i>
-				<h3>
-					<?php echo "$ttcl"; ?> 
-					<a href="ind2x.php?cl=<?php echo $idcl ?>">Leer más</a>
-				</h3>
-			</article>
-			<?php
-				}
-			?>
-		</article>
+		<h1><?php echo "$ttcl"; ?></h1>
 		<article id="automargen">
-			<br />
-			<b>Páginas: </b>
-			<?php
-				//muestro los distintos indices de las paginas
-				if ($total_paginas>1) {
-					for ($i=1; $i <=$total_paginas ; $i++) { 
-						if ($pagina==$i) {
-							//si muestro el indice del la pagina actual, no coloco enlace
-				?>
-					<b><?php echo $pagina." "; ?></b>
-				<?php
-						}
-						else{
-							//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
-				?>
-							<a href="index.php?pagina=<?php echo $i ?>"><?php echo "$i"; ?></a>
-
-				<?php
-						}
-					}
-				}
-			?>
+			<?php echo "$txcl"; ?>
 		</article>
 	</section>
 	<footer>
@@ -143,3 +105,14 @@
 	</footer>
 </body>
 </html>
+<?php
+		}
+		else{
+			echo "<script type='text/javascript'>";
+				echo "alert('calsificado no existe o ha sido eliminado');";
+				echo "var pagina='../clasificados';";
+				echo "document.location.href=pagina;";
+			echo "</script>";
+		}
+	}
+?>

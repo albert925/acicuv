@@ -1,0 +1,17 @@
+.flccont{
+	display: flex;
+	-webit-justify-content: space-around;
+	-ms-justify-content: space-around;
+	justify-content: space-around;
+}
+@media screen and (max-width: 900px){
+	.flccont{
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+		.flccont article{
+			margin: 1em auto;
+			width: 90%;
+		}
+}

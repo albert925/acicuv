@@ -2,6 +2,22 @@ i{
 	font-size: 12px;
 	font-style: italic;
 }
+	.cadclasif h3{
+		margin: 0;
+	}
+	.cadclasif article{
+		border-bottom: 1px dotted #B6B7B8;
+		padding: 1em 0 1em 1em;
+	}
+		.cadclasif article a{
+			font-size: 14px;
+			color: #004100;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+		.cadclasif article a:active{
+			text-decoration: underline;
+		}
 .flesitios,.flGa{
 	display: flex;
 	-webkit-flex-wrap: wrap;
