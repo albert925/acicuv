@@ -1,0 +1,27 @@
+i{
+	font-size: 12px;
+	padding-left: 1em;
+}
+.fldenun{
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-justify-content: space-around;
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+}
+	.fldenun .cadant{
+		border-bottom: 1px dotted #000;
+		margin-bottom: 1em;
+		padding: 0.5em 0;
+	}
+		.fldenun .cadant a{
+			font-size: 14px;
+			color: #004100;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+		.fldenun .cadant a:hover,.fldenun .cadant a:active{
+			text-decoration: underline;
+		}

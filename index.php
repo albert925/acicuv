@@ -275,7 +275,7 @@
 							<p>
 								<?php echo "$rsdn"; ?>
 							</p>
-							<a href="quejas/indx.php?dn=<?php echo $iddn ?>">Leer más</a>
+							<a href="quejas/ind2x.php?dn=<?php echo $iddn ?>">Leer más</a>
 						</article>
 						<?php
 							}
