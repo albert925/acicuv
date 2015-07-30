@@ -67,7 +67,7 @@ function nuevo_mesdenunc () {
 				else{
 					$("#txDn").css(normal).text("");
 					$("#txDn").prepend("<center><img src='imagenes/loadingb.gif' alt='loading' /></center>");
-					$.post("new_denunmesj.php",{},resuldenummsm);
+					$.post("new_denunmesj.php",{a:ddc,b:ddb,c:ddc,d:ddd},resuldenummsm);
 					return false;
 				}
 			}
@@ -75,5 +75,12 @@ function nuevo_mesdenunc () {
 	}
 }
 function resuldenummsm (jjss) {
-	// body...
+	if (jjss=="2") {
+		$("#txDn").css(bien).text("Mensaje enviado");
+		location.reload(20);
+	}
+	else{
+		$("#txDn").css(mal).html(jjss);
+		return false;
+	}
 }
