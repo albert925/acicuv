@@ -25,6 +25,10 @@ i{
 		.fldenun .cadant a:hover,.fldenun .cadant a:active{
 			text-decoration: underline;
 		}
+	.infnsotros p{
+		text-align: justify;
+		padding: 0 1em;
+	}
 @media screen and (max-width: 900px){
 	.fldenun{
 		-webkit-flex-direction: column;

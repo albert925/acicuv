@@ -23,7 +23,7 @@
 <body>
 	<header id="automargen">
 		<article id="redes">
-			<a href="" target="_blank"><span class="icon-facebook"></span></a>
+			<a href="https://www.facebook.com/cucuta.ciudadverde" target="_blank"><span class="icon-facebook"></span></a>
 			<a href="" target="_blank"><span class="icon-twitter"></span></a>
 			<a href="" target="_blank"><span class="icon-instagram"></span></a>
 			<a href="" target="_blank"><span class="icon-youtube3"></span></a>
